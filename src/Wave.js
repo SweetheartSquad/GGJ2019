@@ -5,7 +5,7 @@ import game from './Game';
 export default class Wave extends Sprite {
 
     constructor(x=0, y=0, amplitude, oscillationSwitch) {
-        super(resources.wave.texture);
+        super(resources[`wave${Math.floor(Math.abs(x-y)%3)+1}`].texture);
         this.initialY = y;
         this.initialX = x;
         this.offsetX = x;
@@ -24,9 +24,10 @@ export default class Wave extends Sprite {
 
     update(){
         var time = game.app.ticker.lastTime / 200 + this.initialX;
-        const wave = 0.5* (Math.sin(time/2) + Math.sin(time/3));
-        this.y = this.initialY + wave * this.amplitude * this.oscillationSwitch;
-        this.x = this.offsetX + Math.sin(time) * this.width/6;
+        const waveY = 0.5* (Math.sin(time/2) + Math.sin(time/3)) + Math.sin(time*5) * 0.05 * Math.sin(time/5);
+        const waveX = Math.sin(time) + Math.sin(time*5) * 0.05 * Math.sin(time/5);
+        this.y = this.initialY + waveY * this.amplitude * this.oscillationSwitch;
+        this.x = this.offsetX + waveX * this.width/6;
     }
 
 }
