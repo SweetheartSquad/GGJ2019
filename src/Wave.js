@@ -3,11 +3,11 @@ import { resources } from './Game';
 
 export default class Wave extends Sprite {
 
-    constructor() {
+    constructor(x=0, y=0) {
         super(resources.wave.texture);
         this.dateTime = new Date();
-
-        this.initialY = 100;
+        this.initialY = this.y = y;
+        this.x = x;
     }
 
     destroy() {
