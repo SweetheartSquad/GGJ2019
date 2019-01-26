@@ -36,7 +36,7 @@
 		"webpack-merge": "^4.2.1"
 	},
 	"dependencies": {
-		"howler-pixi-loader-middleware": "^1.0.1",
+		"howler-pixi-loader-middleware": "^1.0.2",
 		"pixi.js": "^4.8.5"
 	}
 }
