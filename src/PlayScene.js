@@ -6,6 +6,7 @@ import size from './size';
 import WaveSet from './WaveSet';
 import NavMesh from './NavMesh';
 import Character from './Character';
+import { Boat } from './Boat';
 
 let g = new Graphics();
 let player;
@@ -62,7 +63,7 @@ export default class PlayScene extends Container {
         this.addWaveSet(250, 400, 20);
         this.addWaveSet(260, 440, 20);
 
-        this.boat = new Sprite(resources.boat.texture);
+        this.boat = new Boat();
         this.addChild(this.boat);
         this.addWaveSet(192, size.y - 220, 20);
         this.addWaveSet(128, size.y - 180, 20);
@@ -90,8 +91,8 @@ export default class PlayScene extends Container {
 		player.p.y = bounds.getCenter().y;
 		// characters.characters.push(player);
 
-		this.addChild(g);
-		this.addChild(player.con);
+		this.boat.addChild(g);
+		this.boat.addChild(player.con);
 
 		const font = {
 			fontFamily: 'Comic Sans MS',
@@ -163,7 +164,13 @@ export default class PlayScene extends Container {
 		}
 
 		player.update();
-		bounds.debugDraw(g);
+        bounds.debugDraw(g);
+        
+        this.boat.rotation = (Math.sin(curTime/300) + Math.sin(curTime/200)) * 0.5 * 0.01;
+        const waveY = 0.5* (Math.sin(curTime/300) + Math.sin(curTime/400)) + Math.sin(curTime/10) * 0.05 * Math.sin(curTime/50);
+        const waveX = Math.sin(curTime/500) + Math.sin(curTime/300) * 0.05 * Math.sin(curTime/50);
+        this.boat.y = this.boat.bg.height / 2 + waveY * 4;
+        this.boat.x = this.boat.bg.width / 2 + waveX * 2;
     }
     
     addWaveSet(x, y, amplitude){
