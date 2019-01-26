@@ -6,15 +6,45 @@ import Character from './Character';
 import Bounds from './Bounds';
 import V from './vector';
 import { Graphics } from 'pixi.js/lib/core';
+import { NavMesh } from './NavMesh';
 let player;
-let bounds = new Bounds([
-	new Point(140 + Math.random() * 40,140 + Math.random() * 40),
-	new Point(400 + Math.random() * 40,140 + Math.random() * 40),
-	new Point(400 + Math.random() * 40,400 + Math.random() * 40),
-	new Point(140 + Math.random() * 40,400 + Math.random() * 40),
-]);
+let bounds = new NavMesh([{
+	points: [
+		new Point(140, 140),
+		new Point(700, 140),
+		new Point(700, 400),
+		new Point(140, 400),
+	]
+}, {
+	points: [
+		new Point(540, 540),
+		new Point(400, 540),
+		new Point(400, 300),
+		new Point(540, 300),
+	]
+}, {
+	points: [
+		new Point(240, 240),
+		new Point(400, 240),
+		new Point(400, 300),
+		new Point(240, 300),
+	]
+}, {
+	points: [
+		new Point(240, 340),
+		new Point(500, 350),
+		new Point(500, 300),
+		new Point(340, 300),
+	]
+}, {
+	points: [
+		new Point(500, 500),
+		new Point(800, 180),
+		new Point(800, 800),
+		new Point(500, 800),
+	]
+}]);
 let g = new Graphics();
-console.log(bounds);
 export default class TestScene extends Container {
 	constructor() {
 		super();
@@ -23,8 +53,8 @@ export default class TestScene extends Container {
 		player.camPoint = new PIXI.DisplayObject();
 		player.camPoint.visible = false;
 		player.con.addChild(player.camPoint);
-		player.p.x = bounds.center.x;
-		player.p.y = bounds.center.y;
+		player.p.x = bounds.getCenter().x;
+		player.p.y = bounds.getCenter().y;
 		// characters.characters.push(player);
 
 		this.addChild(g);
@@ -58,24 +88,7 @@ export default class TestScene extends Container {
 		player.v.y *= 0.8;
 		player.v.y += input.move.y;
 
-		const start = player.p;
-		const end = bounds.center;
-		const d = bounds.dist(start, end);
-		g.beginFill();
-		g.lineStyle(3, 400000);
-		g.moveTo(start.x, start.y);
-		g.lineTo(end.x, end.y);
-		g.endFill();
-		if (d) {
-			g.beginFill();
-			g.lineStyle(3, 300000);
-			g.moveTo(player.p.x, player.p.y);
-			g.lineTo(d.x, d.y);
-			g.endFill();
-			const v = V.subtract(d, player.p);
-			player.v.x += v.x/5;
-			player.v.y += v.y/5;
-		}
+		bounds.update(player);
 
 		player.p.x += player.v.x;
 		var oldy = player.p.y;
@@ -106,13 +119,6 @@ export default class TestScene extends Container {
 		}
 
 		player.update();
-		g.beginFill(0,0);
-		g.lineStyle(3, 200000);
-		g.drawPolygon(bounds);
-		g.endFill();
-		// if (this.ready && getInput().justDown) {
-		// 	this.destroy();
-		// 	setScene(new PoseScene());
-		// }
+		bounds.debugDraw(g);
 	}
 }
