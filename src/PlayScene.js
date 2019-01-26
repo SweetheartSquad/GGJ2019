@@ -85,7 +85,10 @@ export default class PlayScene extends Container {
         // }
 
 
-		player = new Character('fella');
+		player = new Character({
+            name: 'fella',
+            scale: 0.25,
+        });
 		player.camPoint = new PIXI.DisplayObject();
 		player.camPoint.visible = false;
 		player.con.addChild(player.camPoint);
@@ -125,13 +128,15 @@ export default class PlayScene extends Container {
 		g.clear();
 		const curTime = game.app.ticker.lastTime;
 		
-		const input = getInput();
+        const input = getInput();
+        const playerSpeedX = 1.1;
+        const playerSpeedY = 0.4;
 		// update player
 		player.v.x *= 0.8;
-		player.v.x += input.move.x * 2.0;
+		player.v.x += input.move.x * playerSpeedX;
 
 		player.v.y *= 0.8;
-		player.v.y += input.move.y;
+		player.v.y += input.move.y * playerSpeedY;
 
 		bounds.update(player);
 
@@ -149,13 +154,13 @@ export default class PlayScene extends Container {
 		} else {
 			if (player.running) {
 				player.running = 0;
-				// player.spr.texture = PIXI.utils.TextureCache['player_idle'];
+				player.spr.texture = PIXI.utils.TextureCache[player.name];
 			}
 		}
 		player.freq = (player.running ? 0.5 : 1.0) * 200;
 		if (player.running) {
 			if (player.running > 5) {
-				// player.spr.texture = PIXI.utils.TextureCache['player_run_' + (Math.floor(curTime / player.freq) % 2 + 1)];
+				player.spr.texture = PIXI.utils.TextureCache[`${player.name}_run_${(Math.floor(curTime / player.freq) % 2 + 1)}`];
 			}
 			player.flipped = player.v.x < 0;
 			player.spr.anchor.y = 1 + Math.abs(Math.pow(Math.sin(curTime / player.freq), 2)) / 20;
