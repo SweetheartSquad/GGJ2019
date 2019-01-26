@@ -33,7 +33,10 @@ export class Bounds extends Polygon {
 			const dist = V.magnitude2(V.subtract(p, point));
 			if (dist < minDist) {
 				minDist = dist;
-				result = point;
+				result = {
+					point: point,
+					normal: new Point(y2 - y1, -(x2 - x1))
+				};
 			}
 		}
 		return result;
