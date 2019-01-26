@@ -1,15 +1,9 @@
 
-import { getInput, setScene } from './main';
+import { getInput } from './main';
 import game, { resources } from './Game';
 import { Container, Sprite, Graphics, Point } from 'pixi.js/lib/core';
-import { BitmapText } from 'pixi.js/lib/extras';
-import EndScene from './EndScene';
-import Peep from './Peep';
-import CustomFilter from './CustomFilter';
-import Wave from './Wave';
 import size from './size';
 import WaveSet from './WaveSet';
-import assets from './assets';
 import NavMesh from './NavMesh';
 import Character from './Character';
 
