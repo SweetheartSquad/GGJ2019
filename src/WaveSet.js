@@ -23,21 +23,19 @@ export default class WaveSet extends Container{
     }
     
     update(){
-        if(this.x >= this.waves[0].width * 2 
-            && this.x - this.lastWaveSwap >= this.waves[0].width / 2){
+        if(this.waves[this.waves.length - 1].x > size.x){    
             var wave = this.waves.pop();
-            wave.initialX = this.waves[0].x - wave.width / 2;
+            wave.offsetX = this.waves[0].offsetX - wave.width / 2;
             this.waves.unshift(wave);
-            this.lastWaveSwap = this.x;
         }
         this.waves.forEach((wave) => {
             wave.update();
+            wave.offsetX += 1;
         });
-        this.x += 2;
     }
 
     initWaves(){
-        var spanned = -size.x - this.initialX;
+        var spanned = -size.x - this.x;
         var oscillationSwitch = 1;
         while(spanned < size.x){
             var wave = new Wave(spanned, 0, this.amplitude, oscillationSwitch);
