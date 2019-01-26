@@ -7,6 +7,7 @@ import WaveSet from './WaveSet';
 import NavMesh from './NavMesh';
 import Character from './Character';
 import { Boat } from './Boat';
+import { lerp } from './utils';
 
 let g = new Graphics();
 let player;
@@ -46,6 +47,9 @@ let bounds = new NavMesh([{
 		new Point(500, 800),
 	]
 }]);
+
+let turbulenceInput = 0.3;
+export let turbulence = 1;
 
 export default class PlayScene extends Container {
     
@@ -117,11 +121,12 @@ export default class PlayScene extends Container {
 
 	update() {
         this.waveSets.forEach((waveSet)=>{
-           waveSet.update(); 
+            waveSet.update(); 
         });
-
+        
 		g.clear();
 		const curTime = game.app.ticker.lastTime;
+        turbulence = lerp(0.3, 4, turbulenceInput);
 		
         const input = getInput();
         const playerSpeedX = 1.1;
@@ -166,11 +171,11 @@ export default class PlayScene extends Container {
 		player.update();
         bounds.debugDraw(g);
         
-        this.boat.rotation = (Math.sin(curTime/300) + Math.sin(curTime/200)) * 0.5 * 0.01;
+        this.boat.rotation = ((Math.sin(curTime/300) + Math.sin(curTime/200)) * 0.5 * 0.01) * turbulence;
         const waveY = 0.5* (Math.sin(curTime/300) + Math.sin(curTime/400)) + Math.sin(curTime/10) * 0.05 * Math.sin(curTime/50);
         const waveX = Math.sin(curTime/500) + Math.sin(curTime/300) * 0.05 * Math.sin(curTime/50);
-        this.boat.y = this.boat.bg.height / 2 + waveY * 4;
-        this.boat.x = this.boat.bg.width / 2 + waveX * 2;
+        this.boat.y = this.boat.bg.height / 2 + waveY * 4 * turbulence;
+        this.boat.x = this.boat.bg.width / 2 + waveX * 2 * turbulence;
     }
     
     addWaveSet(x, y, amplitude){
