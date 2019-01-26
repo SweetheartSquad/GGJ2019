@@ -14,7 +14,7 @@ export { default as posing_1 } from './gargoyle_Pose.png';
 export { default as posing_2 } from './gargoyle_Pose2.png';
 export { default as posing_3 } from './gargoyle_Pose3.png';
 // misc
-export { default as plus } from './plus.png';
+export { default as shadows } from './plus.png';
 export { default as uiPose_1 } from './uiPose_1.png';
 export { default as uiPose_2 } from './uiPose_2.png';
 export { default as uiPose_3 } from './uiPose_3.png';
