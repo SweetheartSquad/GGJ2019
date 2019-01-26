@@ -1,13 +1,17 @@
 import { Sprite } from "pixi.js/lib/core";
 import { resources } from './Game';
+import game from './Game';
 
 export default class Wave extends Sprite {
 
-    constructor() {
+    constructor(x=0, y=0, oscillationOffset, oscillationSwitch) {
         super(resources.wave.texture);
-        this.dateTime = new Date();
-
-        this.initialY = 100;
+        this.initialY = y;
+        this.initialX = x;
+        this.y = y;
+        this.x = x;
+        this.oscillationOffset = oscillationOffset;
+        this.oscillationSwitch = oscillationSwitch;
     }
 
     destroy() {
@@ -18,8 +22,10 @@ export default class Wave extends Sprite {
 	}
 
     update(){
-        var time = new Date().getMilliseconds();
-        this.y = this.initialY + Math.sin(time) * 20;
+        var time = game.app.ticker.lastTime / 200 + this.initialX;
+        const wave = 0.5* (Math.sin(time/2) + Math.sin(time/3));
+        this.y = this.initialY + wave * this.oscillationOffset * this.oscillationSwitch;
+        this.x = this.initialX + Math.sin(time) * this.width/6;
     }
 
 }

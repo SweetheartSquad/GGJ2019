@@ -36,3 +36,4 @@ export { default as end3 } from './end3.png';
 export { default as end4 } from './end4.png';
 export { default as end5 } from './end5.png';
 export { default as wave } from './wave.png';
+export { default as boat } from './boat.png';
