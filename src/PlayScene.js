@@ -23,7 +23,9 @@ export default class PlayScene extends Container {
         this.addWaveSet(64, 240, 30);
         this.addWaveSet(128, 280, 20);
         this.addWaveSet(192, 320, 20);
-        this.addWaveSet(192, 360, 20);
+        this.addWaveSet(210, 360, 20);
+        this.addWaveSet(250, 400, 20);
+        this.addWaveSet(250, 440, 20);
 
         this.boat = new Sprite(resources.boat.texture);
         this.addChild(this.boat);
