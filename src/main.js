@@ -3,6 +3,7 @@ import Mouse from './input-mouse';
 import keys from './input-keys';
 import { Sprite } from 'pixi.js/lib/core';
 import MenuScene from './MenuScene';
+import PlayScene from './PlayScene'
 import game, { resources } from './Game';
 import TestScene from './TestScene';
 import { clamp } from './utils';
@@ -58,7 +59,7 @@ export function init() {
 	});
 	mouse = new Mouse(game.app.view, false);
 
-	setScene(new TestScene());
+	setScene(new PlayScene());
 
 	// start main loop
 	game.app.ticker.add(update);
