@@ -13,38 +13,38 @@ let g = new Graphics();
 let player;
 let bounds = new NavMesh([{
 	points: [
-		new Point(140, 140),
-		new Point(700, 140),
-		new Point(700, 400),
-		new Point(140, 400),
+		new Point(140 - 400, 140 - 400),
+		new Point(700 - 400, 140 - 400),
+		new Point(700 - 400, 400 - 400),
+		new Point(140 - 400, 400 - 400),
 	]
 }, {
 	points: [
-		new Point(540, 540),
-		new Point(400, 540),
-		new Point(400, 300),
-		new Point(540, 300),
+		new Point(540 - 400, 540 - 400),
+		new Point(400 - 400, 540 - 400),
+		new Point(400 - 400, 300 - 400),
+		new Point(540 - 400, 300 - 400),
 	]
 }, {
 	points: [
-		new Point(240, 240),
-		new Point(400, 240),
-		new Point(400, 300),
-		new Point(240, 300),
+		new Point(240 - 400, 240 - 400),
+		new Point(400 - 400, 240 - 400),
+		new Point(400 - 400, 300 - 400),
+		new Point(240 - 400, 300 - 400),
 	]
 }, {
 	points: [
-		new Point(240, 340),
-		new Point(500, 350),
-		new Point(500, 300),
-		new Point(340, 300),
+		new Point(240 - 400, 340 - 400),
+		new Point(500 - 400, 350 - 400),
+		new Point(500 - 400, 300 - 400),
+		new Point(340 - 400, 300 - 400),
 	]
 }, {
 	points: [
-		new Point(500, 500),
-		new Point(800, 180),
-		new Point(800, 800),
-		new Point(500, 800),
+		new Point(500 - 400, 500 - 400),
+		new Point(800 - 400, 180 - 400),
+		new Point(800 - 400, 800 - 400),
+		new Point(500 - 400, 800 - 400),
 	]
 }]);
 
