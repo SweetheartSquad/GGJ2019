@@ -13,7 +13,7 @@ export default class WaveSet extends Container{
         this.y = y;
         this.waves = [];
         this.amplitude = amplitude;
-        this.lastWaveSwap = -256;
+        this.lastWaveSwap = 0;
 
         this.initWaves();
     }
@@ -37,7 +37,7 @@ export default class WaveSet extends Container{
     }
 
     initWaves(){
-        var spanned = -this.initialX * 2;
+        var spanned = -size.x - this.initialX;
         var oscillationSwitch = 1;
         while(spanned < size.x){
             var wave = new Wave(spanned, 0, this.amplitude, oscillationSwitch);
