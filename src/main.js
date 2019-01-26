@@ -1,4 +1,4 @@
-import gamepads from './input-gamepads';
+import gamepads from 'input-gamepads.js';
 import Mouse from './input-mouse';
 import keys from './input-keys';
 import { Sprite } from 'pixi.js/lib/core';
