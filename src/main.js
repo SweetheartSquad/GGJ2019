@@ -4,6 +4,8 @@ import keys from './input-keys';
 import { Sprite } from 'pixi.js/lib/core';
 import MenuScene from './MenuScene';
 import game, { resources } from './Game';
+import TestScene from './TestScene';
+import { clamp } from './utils';
 
 let mouse;
 let activeScene;
@@ -13,11 +15,39 @@ export function setScene(scene) {
 	game.app.stage.addChild(activeScene);
 }
 
-export function getInput() {
-	return {
-		justDown: mouse.isJustDown() || keys.isJustDown(keys.SPACE) || gamepads.isJustDown(gamepads.A),
-		justUp: mouse.isJustUp() || keys.isJustUp(keys.SPACE) || gamepads.isJustUp(gamepads.A),
+
+export function getInput(){
+	var res = {
+		move:{
+			x: gamepads.getAxis(gamepads.LSTICK_H),
+			y: gamepads.getAxis(gamepads.LSTICK_V)
+		},
+		talk:
+			gamepads.isJustDown(gamepads.A) || 
+			gamepads.isJustDown(gamepads.B) || 
+			gamepads.isJustDown(gamepads.X) || 
+			gamepads.isJustDown(gamepads.Y) || 
+			keys.isJustDown(keys.SPACE) ||
+			keys.isJustDown(keys.E) ||
+			keys.isJustDown(keys.Z) ||
+			keys.isJustDown(keys.X) ||
+			keys.isJustDown(keys.ENTER)
 	};
+
+	if(keys.isDown(keys.A) || keys.isDown(keys.LEFT)){
+		res.move.x -= 1;
+	}if(keys.isDown(keys.D) || keys.isDown(keys.RIGHT)){
+		res.move.x += 1;
+	}if(keys.isDown(keys.W) || keys.isDown(keys.UP)){
+		res.move.y -= 1;
+	}if(keys.isDown(keys.S) || keys.isDown(keys.DOWN)){
+		res.move.y += 1;
+	}
+
+	res.move.x = clamp(-1.0, res.move.x, 1.0);
+	res.move.y = clamp(-1.0, res.move.y, 1.0);
+
+	return res;
 }
 
 export function init() {
@@ -28,7 +58,7 @@ export function init() {
 	});
 	mouse = new Mouse(game.app.view, false);
 
-	setScene(new MenuScene());
+	setScene(new TestScene());
 
 	// start main loop
 	game.app.ticker.add(update);
