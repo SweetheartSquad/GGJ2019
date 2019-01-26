@@ -5,7 +5,6 @@ import { Sprite } from 'pixi.js/lib/core';
 import MenuScene from './MenuScene';
 import PlayScene from './PlayScene'
 import game, { resources } from './Game';
-import TestScene from './TestScene';
 import { clamp } from './utils';
 
 let mouse;
