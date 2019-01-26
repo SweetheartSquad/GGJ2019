@@ -1,7 +1,7 @@
 import Bounds from "./Bounds";
 import V from './vector';
 
-export class NavMesh {
+export default class NavMesh {
 	constructor(areas) {
 		this.areas = areas.map(({
 			points,
