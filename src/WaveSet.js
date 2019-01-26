@@ -13,7 +13,7 @@ export default class WaveSet extends Container{
         this.y = y;
         this.waves = [];
         this.amplitude = amplitude;
-        this.lastWaveSwap = -128;
+        this.lastWaveSwap = -256;
 
         this.initWaves();
     }
@@ -23,7 +23,7 @@ export default class WaveSet extends Container{
     }
     
     update(){
-        if(this.x - this.lastWaveSwap > this.waves[0].width){
+        if(this.x > this.waves[0].width && this.x - this.lastWaveSwap > this.waves[0].width){
             var wave = this.waves.pop();
             wave.initialX = this.waves[0].x - wave.width;
             console.log(wave.initialX);

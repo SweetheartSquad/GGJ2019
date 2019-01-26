@@ -8,17 +8,17 @@ import Peep from './Peep';
 import CustomFilter from './CustomFilter';
 import Wave from './Wave';
 import size from './size';
+import WaveSet from './WaveSet';
 
 export default class PlayScene extends Container {
     
     constructor() {
         super(); 
 
-        this.waves = [];
-        this.addWaveSet(0, 128);
-        this.addWaveSet(50, 64);
-        this.addWaveSet(100, 0);
-        
+        this.waveSets = [];
+        this.addWaveSet(128, size.y - 200, 20);
+        this.addWaveSet(64, size.y - 160, 30);
+        this.addWaveSet(0, size.y - 110, 10);
     }
     
 	destroy() {
@@ -26,19 +26,15 @@ export default class PlayScene extends Container {
 	}
 
 	update() {
-        this.waves.forEach((wave)=>{
-           wave.update(); 
+        this.waveSets.forEach((waveSet)=>{
+           waveSet.update(); 
         });
     }
     
-    addWaveSet(y, xOffset){
-        var spanned = -xOffset;
-        while(spanned < size.x){
-            var wave = new Wave(spanned, y);
-            spanned += wave.width;
-            this.addChild(wave);
-            this.waves.push(wave);
-        }
+    addWaveSet(x, y, amplitude){
+        var waveSet = new WaveSet(x, y, amplitude);
+        this.waveSets.push(waveSet);
+        this.addChild(waveSet);
     }
 
 }
