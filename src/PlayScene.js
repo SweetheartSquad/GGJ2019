@@ -18,6 +18,7 @@ export default class PlayScene extends Container {
 
         this.waveSets = [];
         
+        this.addWaveSet(0, 160, 10);
         this.addWaveSet(0, 200, 10);
         this.addWaveSet(64, 240, 30);
         this.addWaveSet(128, 280, 20);
