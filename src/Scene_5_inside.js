@@ -19,10 +19,10 @@ export default class extends InteriorScene {
         x: 100,
         y: 50,
         lines: [
-          'This is so fun!'
-          'I\'ve never been away from home for so long. '
-          'I think I\'m ready to go home, though…'
-          'I really miss my parents.'
+          'This is so fun!',
+          'I\'ve never been away from home for so long. ',
+          'I think I\'m ready to go home, though…',
+          'I really miss my parents.',
 
         ],
       }],
