@@ -27,6 +27,7 @@ export default class PlayScene extends Container {
 		super();
 		this.screenFilter = new CustomFilter(resources.frag.data);
 		this.screenFilter.uniforms.whiteout = 0;
+		this.screenFilter.uniforms.raining = 1;
 		this.screenFilter.padding = 150;
 		window.screenFilter = this.screenFilter;
 

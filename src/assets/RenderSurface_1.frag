@@ -4,6 +4,7 @@ varying vec2 vTextureCoord;
 
 uniform sampler2D uSampler;
 uniform float rain;
+uniform float raining;
 uniform float whiteout;
 uniform float curTime;
 
@@ -29,8 +30,8 @@ void main(void) {
 	float wind = map(rain, 0.0, 1.0, 0.1, 0.4);
 	float rainAmount = (rand(uv.x+uv.y*-wind, t)*2.0 - 1.0)*map(rain, 0.0, 1.0, 0.5, 1.0);
 	float rainStep = step(abs(rainAmount), map(rain, 0.0, 1.0, 0.0, 0.5));
-	uv.y += rainAmount*rainStep*0.5;
-	uv.x += rainAmount*rainStep*0.5*wind;
+	uv.y += rainAmount*rainStep*0.5*step(0.5,raining);
+	uv.x += rainAmount*rainStep*0.5*wind*step(0.5,raining);
 	vec3 col = texture2D(uSampler, uv).rgb;
     col += vec3(whiteout);
 
