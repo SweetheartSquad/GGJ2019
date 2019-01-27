@@ -4,6 +4,7 @@ import { Point } from "pixi.js";
 import game, { resources } from "./Game";
 import size from "./size";
 import { lerp } from "./utils";
+import { player } from "./main";
 
 let turbulenceTarget = 0.3;
 let turbulence = turbulenceTarget;

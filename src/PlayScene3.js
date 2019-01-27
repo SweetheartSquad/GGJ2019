@@ -16,14 +16,18 @@ export default class PlayScene3 extends InteriorScene {
 			}],
 			interact: [{
 				points: [
-					new Point(-140, -100),
-					new Point(-20, -100),
-					new Point(-20, 120),
-					new Point(-140, 120),
+					new Point(500, 100),
+					new Point(450, 100),
+					new Point(450, 400),
+					new Point(500, 400),
 				],
 				onEnter: () => {
-					player.p.y += 20;
-					setTimeout(() => setScene(new PlayScene()));
+					setTimeout(() => {
+						setScene(new PlayScene());
+						// hallway exit
+						player.p.x = -480;
+						player.p.y = 240;
+					});
 				},
 			}],
 		});

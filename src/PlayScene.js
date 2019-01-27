@@ -46,14 +46,18 @@ export default class PlayScene extends BoatScene {
 			}],
 			interact: [{
 				points: [
-					new Point(-140, -100),
-					new Point(-20, -100),
-					new Point(-20, 120),
-					new Point(-140, 120),
+					new Point(-580, 100),
+					new Point(-500, 100),
+					new Point(-500, 400),
+					new Point(-580, 400),
 				],
 				onEnter: () => {
-					player.p.y += 20;
-					setTimeout(() => setScene(new PlayScene3(), 'DAY 2'));
+					setTimeout(() => {
+						setScene(new PlayScene3());
+						// hallway entrance
+						player.p.x = 424;
+						player.p.y = 235;
+					});
 				},
 			}],
 		});
