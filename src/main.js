@@ -1,10 +1,8 @@
 import gamepads from 'input-gamepads.js';
 import Mouse from './input-mouse';
 import keys from './input-keys';
-import { Sprite } from 'pixi.js/lib/core';
-import MenuScene from './MenuScene';
 import Scene_1_outside from './Scene_1_outside'
-import game, { resources } from './Game';
+import game from './Game';
 import { clamp } from './utils';
 import Player from './Player';
 import TextScene from './TextScene';
