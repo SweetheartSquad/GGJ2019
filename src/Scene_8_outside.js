@@ -17,6 +17,7 @@ export default class extends BoatScene {
 			}],
 			interact: [toInterior(Scene_8_inside)],
 		});
+		this.setRaining(true);
 		this.setTurbulence(0.6);
 	}
 }
