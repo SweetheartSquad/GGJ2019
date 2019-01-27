@@ -16,7 +16,6 @@ export const playerSpeedY = 0.4;
 let g = new Graphics();
 let player;
 
-
 let turbulenceInput = 0.3;
 export let turbulence = 1;
 
@@ -81,41 +80,58 @@ export default class PlayScene extends Container {
 
 		this.bounds = new NavMesh([{
 			points: [
-				new Point(140 - 400, 140 - 400),
-				new Point(700 - 400, 140 - 400),
-				new Point(700 - 400, 400 - 400),
-				new Point(140 - 400, 400 - 400),
+				new Point(-650.0, 86.5),
+				new Point(253.804, 79.5),
+				new Point(347.0, 265.5),
+				new Point(-650.0, 265.5),
+				new Point(-650.0, 86.5),
 			]
-		}, {
+		},{
 			points: [
-				new Point(540 - 400, 540 - 400),
-				new Point(400 - 400, 540 - 400),
-				new Point(400 - 400, 300 - 400),
-				new Point(540 - 400, 300 - 400),
+				new Point(-426.0, 19.5),
+				new Point(103.551, 4.5),
+				new Point(158.0, 117.5),
+				new Point(-426.0, 112.5),
+				new Point(-426.0, 19.5),
 			]
-		}, {
+		},{
 			points: [
-				new Point(240 - 400, 240 - 400),
-				new Point(400 - 400, 240 - 400),
-				new Point(400 - 400, 300 - 400),
-				new Point(240 - 400, 300 - 400),
-			]
-		}, {
+				new Point(-14.0, -82.5),
+				new Point(-14.0, 6.5),
+				new Point(-14.0, 29.5),
+				new Point(100.0, 29.5),
+				new Point(-14.0, -82.5),
+			].reverse()
+		},{
 			points: [
-				new Point(240 - 400, 340 - 400),
-				new Point(500 - 400, 350 - 400),
-				new Point(500 - 400, 300 - 400),
-				new Point(340 - 400, 300 - 400),
-			]
-		}, {
+				new Point(165.333, -82.5),
+				new Point(0.667, -82.5),
+				new Point(-5.0, -79.5),
+				new Point(-6.284, -72.612),
+				new Point(263.0, 272.5),
+				new Point(557.343, 266.275),
+				new Point(576.0, 260.5),
+				new Point(568.5, 243.909),
+				new Point(201.194, -67.095),
+				new Point(183.0, -78.5),
+				new Point(165.333, -82.5),
+			].reverse()
+		},{
 			points: [
-				new Point(500 - 400, 500 - 400),
-				new Point(700 - 400, 200 - 400),
-				new Point(750 - 400, 180 - 400),
-				new Point(800 - 400, 200 - 400),
-				new Point(800 - 400, 800 - 400),
-				new Point(500 - 400, 800 - 400),
-			]
+				new Point(-202.667, -62.217),
+				new Point(-411.655, -57.702),
+				new Point(-419.0, -56.5),
+				new Point(-421.485, -49.066),
+				new Point(-425.469, 20.269),
+				new Point(-423.0, 27.5),
+				new Point(-416.994, 29.154),
+				new Point(-183.34, 20.167),
+				new Point(-171.0, 14.5),
+				new Point(-171.067, 1.873),
+				new Point(-186.923, -53.288),
+				new Point(-191.571, -61.5),
+				new Point(-202.667, -62.217),
+			].reverse()
 		}]);
 
 
