@@ -104,7 +104,7 @@ export default class PlayScene extends Container {
 
 		player = new Character({
 			name: 'fella',
-			scale: 0.3,
+			scale: 0.4,
 			x: bounds.getCenter().x,
 			y: bounds.getCenter().y,
 		});
@@ -120,9 +120,9 @@ export default class PlayScene extends Container {
 
 		const npc = new Character({
 			name: 'fella',
-			scale: 0.3,
-			x: bounds.getCenter().x-20,
-			y: bounds.getCenter().y,
+			scale: 0.4,
+			x: bounds.getCenter().x+40,
+			y: bounds.getCenter().y+100,
 		});
 		this.boat.addChild(npc);
 
