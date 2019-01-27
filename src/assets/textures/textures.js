@@ -6,3 +6,4 @@ export { default as wave1 } from './wave1.png';
 export { default as wave2 } from './wave2.png';
 export { default as wave3 } from './wave3.png';
 export { default as boat } from './boat.png';
+export { default as boatFront } from './boat_front.png';

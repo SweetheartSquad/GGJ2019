@@ -1,4 +1,3 @@
-
 import { getInput } from './main';
 import game, { resources } from './Game';
 import { Container, Sprite, Graphics, Point } from 'pixi.js/lib/core';
@@ -70,42 +69,42 @@ let turbulenceInput = 0.3;
 export let turbulence = 1;
 
 export default class PlayScene extends Container {
-    
-    constructor() {
-        super(); 
 
-        this.waveSets = [];
-        
-        this.addWaveSet(0, 160, 10);
-        this.addWaveSet(32, 200, 10);
-        this.addWaveSet(64, 240, 30);
-        this.addWaveSet(128, 280, 20);
-        this.addWaveSet(192, 320, 20);
-        this.addWaveSet(210, 360, 20);
-        this.addWaveSet(250, 400, 20);
-        this.addWaveSet(260, 440, 20);
+	constructor() {
+		super();
 
-        this.boat = new Boat();
-        this.addChild(this.boat);
-        this.addWaveSet(192, size.y - 220, 20);
-        this.addWaveSet(128, size.y - 180, 20);
-        this.addWaveSet(64, size.y - 140, 30);
-        this.addWaveSet(0, size.y - 110, 10);
+		this.waveSets = [];
 
-        // for(let i = -2; i < 10; i++){
-        //     this.addWaveSet(i * 64, i * size.y/10, 20);
-        //     if(i == 5){
+		this.addWaveSet(0, 160, 10);
+		this.addWaveSet(32, 200, 10);
+		this.addWaveSet(64, 240, 30);
+		this.addWaveSet(128, 280, 20);
+		this.addWaveSet(192, 320, 20);
+		this.addWaveSet(210, 360, 20);
+		this.addWaveSet(250, 400, 20);
+		this.addWaveSet(260, 440, 20);
 
-        //     this.boat = new Sprite(resources.boat.texture);
-        //     this.addChild(this.boat);
-        //     }
-        // }
+		this.boat = new Boat();
+		this.addChild(this.boat);
+		this.addWaveSet(192, size.y - 220, 20);
+		this.addWaveSet(128, size.y - 180, 20);
+		this.addWaveSet(64, size.y - 140, 30);
+		this.addWaveSet(0, size.y - 110, 10);
+
+		// for(let i = -2; i < 10; i++){
+		//     this.addWaveSet(i * 64, i * size.y/10, 20);
+		//     if(i == 5){
+
+		//     this.boat = new Sprite(resources.boat.texture);
+		//     this.addChild(this.boat);
+		//     }
+		// }
 
 
 		player = new Character({
-            name: 'fella',
-            scale: 0.25,
-        });
+			name: 'fella',
+			scale: 0.25,
+		});
 		player.camPoint = new PIXI.DisplayObject();
 		player.camPoint.visible = false;
 		player.con.addChild(player.camPoint);
@@ -131,22 +130,22 @@ export default class PlayScene extends Container {
 		text.anchor.x = 0.5;
 		text.anchor.y = 0.5;
 		player.con.addChild(text);
-    }
-    
+	}
+
 	destroy() {
-        Container.prototype.destroy.call(this);
+		Container.prototype.destroy.call(this);
 	}
 
 	update() {
-        this.waveSets.forEach((waveSet)=>{
-            waveSet.update(); 
-        });
-        
+		this.waveSets.forEach((waveSet) => {
+			waveSet.update();
+		});
+
 		g.clear();
 		const curTime = game.app.ticker.lastTime;
-        turbulence = lerp(0.3, 4, turbulenceInput);
-		
-        const input = getInput();
+		turbulence = lerp(0.3, 4, turbulenceInput);
+
+		const input = getInput();
 		// update player
 		player.v.x *= 0.8;
 		player.v.x += input.move.x * playerSpeedX;
@@ -186,21 +185,24 @@ export default class PlayScene extends Container {
 			player.spr.anchor.y = 1;
 		}
 
+		if (Math.abs(player.v.y) > 0.01) {
+			this.boat.sortDirty = true;
+			player.con.zIndex = player.p.y;
+		}
+
 		player.update();
 		bounds.debugDraw(g);
 		interactiveBounds.debugDraw(g);
-        
-        this.boat.rotation = ((Math.sin(curTime/300) + Math.sin(curTime/200)) * 0.5 * 0.01) * turbulence;
-        const waveY = 0.5* (Math.sin(curTime/300) + Math.sin(curTime/400)) + Math.sin(curTime/10) * 0.05 * Math.sin(curTime/50);
-        const waveX = Math.sin(curTime/500) + Math.sin(curTime/300) * 0.05 * Math.sin(curTime/50);
-        this.boat.y = this.boat.bg.height / 2 + waveY * 4 * turbulence;
-        this.boat.x = this.boat.bg.width / 2 + waveX * 2 * turbulence;
-    }
-    
-    addWaveSet(x, y, amplitude){
-        var waveSet = new WaveSet(x, y, amplitude);
-        this.waveSets.push(waveSet);
-        this.addChild(waveSet);
-    }
 
+		this.boat.rotation = ((Math.sin(curTime / 300) + Math.sin(curTime / 200)) * 0.5 * 0.01) * turbulence;
+		const waveY = 0.5 * (Math.sin(curTime / 300) + Math.sin(curTime / 400)) + Math.sin(curTime / 10) * 0.05 * Math.sin(curTime / 50);
+		const waveX = Math.sin(curTime / 500) + Math.sin(curTime / 300) * 0.05 * Math.sin(curTime / 50);
+		this.boat.y = this.boat.bg.height / 2 + waveY * 4 * turbulence;
+		this.boat.x = this.boat.bg.width / 2 + waveX * 2 * turbulence;
+	}
+	addWaveSet(x, y, amplitude) {
+		var waveSet = new WaveSet(x, y, amplitude);
+		this.waveSets.push(waveSet);
+		this.addChild(waveSet);
+	}
 }
