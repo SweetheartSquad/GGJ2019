@@ -1,5 +1,5 @@
 import { getInput } from './main';
-import game, { resources } from './Game';
+import game, { resources, player } from './Game';
 import { Container, Sprite, Graphics, Point } from 'pixi.js/lib/core';
 import size from './size';
 import WaveSet from './WaveSet';
@@ -12,10 +12,7 @@ import { createDialog } from './Dialog';
 import NPC from './NPC';
 import CustomFilter from './CustomFilter';
 
-export const playerSpeedX = 1.1;
-export const playerSpeedY = 0.4;
 let g = new Graphics();
-let player;
 
 let turbulenceTarget = 0.3;
 let turbulence = turbulenceTarget;
@@ -33,6 +30,9 @@ export default class PlayScene extends Container {
 
 		this.filters = [this.screenFilter];
 
+		
+		this.boat = new Boat();
+
 		// waves
 		this.waveSets = [];
 
@@ -44,24 +44,11 @@ export default class PlayScene extends Container {
 		this.addWaveSet(210, 363, 20);
 		this.addWaveSet(250, 401, 20);
 		this.addWaveSet(260, 442, 20);
-
-		this.boat = new Boat();
 		this.addChild(this.boat);
 		this.addWaveSet(192, size.y - 223, 20);
 		this.addWaveSet(128, size.y - 180, 20);
 		this.addWaveSet(64, size.y - 142, 30);
 		this.addWaveSet(0, size.y - 114, 10);
-
-
-		player = new Character({
-			name: 'fella',
-			scale: 0.2,
-			x: 250,
-			y: 50,
-		});
-		player.camPoint = new PIXI.DisplayObject();
-		player.camPoint.visible = false;
-		player.addChild(player.camPoint);
 
 		this.boat.addChild(g);
 		this.boat.addChild(player);
@@ -171,10 +158,6 @@ export default class PlayScene extends Container {
 		));
 	}
 
-	destroy() {
-		Container.prototype.destroy.call(this);
-	}
-
 	update() {
 		g.clear();
 		const curTime = game.app.ticker.lastTime;
@@ -184,51 +167,12 @@ export default class PlayScene extends Container {
 		this.screenFilter.uniforms.curTime = curTime;
 		this.screenFilter.uniforms.rain = turbulence;
 
-		const input = getInput();
-		// update player
-		player.v.x *= 0.8;
-		player.v.x += input.move.x * playerSpeedX;
-
-		player.v.y *= 0.8;
-		player.v.y += input.move.y * playerSpeedY;
-
 		this.bounds.update(player);
 		this.interactiveBounds.update(player);
 
-
-		player.p.x += player.v.x;
-		var oldy = player.p.y;
-		player.p.y += player.v.y;
-
-
-		if (Math.abs(player.v.x) + Math.abs(player.v.y) > 1) {
-			if (player.running) {
-				player.running += 1;
-			} else {
-				player.running = 1;
-			}
-		} else {
-			if (player.running) {
-				player.running = 0;
-				player.spr.texture = PIXI.utils.TextureCache[player.name];
-			}
-		}
-		player.freq = (player.running ? 0.5 : 1.0) * 200;
-		if (player.running) {
-			if (player.running > 5) {
-				player.spr.texture = PIXI.utils.TextureCache[`${player.name}_run_${(Math.floor(curTime / player.freq) % 2 + 1)}`];
-			}
-			player.flipped = player.v.x < 0;
-			player.spr.anchor.y = 1 + Math.abs(Math.pow(Math.sin(curTime / player.freq), 2)) / 20;
-		} else {
-			player.spr.anchor.y = 1;
-		}
-
 		if (Math.abs(player.v.y) > 0.01) {
 			this.boat.sortDirty = true;
-			player.zIndex = player.p.y;
 		}
-		player.camPoint.position.x = player.v.x * size.x * 0.01;
 
 		// camera
 		this.s = lerp(this.s || 1, 1 - (Math.abs(player.v.y)+Math.abs(player.v.x))/64, 0.05);

@@ -14,6 +14,7 @@ export class Boat extends Container {
 		this.fg.anchor.x = this.fg.anchor.y = 0.5;
 		this.fg.zIndex = 100000;
 		this.addChild(this.fg);
+		this.sortDirty = true;
 	}
 
 	updateTransform() {
