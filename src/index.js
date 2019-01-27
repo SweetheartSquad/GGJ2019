@@ -66,14 +66,14 @@ function play() {
 				});
 			} catch (error) {
 				fail({
-					message: 'Unsupported browser',
+					message: 'Something went wrong',
 					error
 				});
 			}
 		}, error => {
 			preloaded = true;
 			fail({
-				message: 'Unsupported browser',
+				message: 'Something went wrong',
 				error
 			});
 		});
