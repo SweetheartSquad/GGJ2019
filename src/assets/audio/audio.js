@@ -21,6 +21,7 @@ import wavesUrl from './waves.mp3';
 // export { default as not_yet } from './NOT YET.mp3';
 export { default as thunder } from './thunder.mp3';
 export { default as talk } from './talk.mp3';
+export { default as dramatic } from './dramatic.mp3';
 export const rain = {
     url: rainUrl,
     metadata:{
