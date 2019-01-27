@@ -16,50 +16,11 @@ export default class InteriorScene extends BaseScene {
 			floor: interior,
 			nav: [{
 				points: [
-					new Point(-650.0 + 100, 86.5 + 100),
-					new Point(253.804 + 100, 79.5 + 100),
-					new Point(347.0 + 100, 265.5 + 100),
-					new Point(-650.0 + 100, 265.5 + 100),
-					new Point(-650.0 + 100, 86.5 + 100),
+					new Point(-550, 186),
+					new Point(700, 179),
+					new Point(700, 320),
+					new Point(-550, 320),
 				]
-			}, {
-				points: [
-					new Point(-426.0 + 100, 19.5 + 100),
-					new Point(103.551 + 100, 4.5 + 100),
-					new Point(158.0 + 100, 117.5 + 100),
-					new Point(-426.0 + 100, 112.5 + 100),
-					new Point(-426.0 + 100, 19.5 + 100),
-				]
-			}, {
-				points: [
-					new Point(165.333 + 100, -82.5 + 100),
-					new Point(0.667 + 100, -82.5 + 100),
-					new Point(-5.0 + 100, -79.5 + 100),
-					new Point(-6.284 + 100, -72.612 + 100),
-					new Point(263.0 + 100, 272.5 + 100),
-					new Point(557.343 + 100, 266.275 + 100),
-					new Point(576.0 + 100, 260.5 + 100),
-					new Point(568.5 + 100, 243.909 + 100),
-					new Point(201.194 + 100, -67.095 + 100),
-					new Point(183.0 + 100, -78.5 + 100),
-					new Point(165.333 + 100, -82.5 + 100),
-				].reverse()
-			}, {
-				points: [
-					new Point(-202.667 + 100, -62.217 + 100),
-					new Point(-411.655 + 100, -57.702 + 100),
-					new Point(-419.0 + 100, -56.5 + 100),
-					new Point(-421.485 + 100, -49.066 + 100),
-					new Point(-425.469 + 100, 20.269 + 100),
-					new Point(-423.0 + 100, 27.5 + 100),
-					new Point(-416.994 + 100, 29.154 + 100),
-					new Point(-183.34 + 100, 20.167 + 100),
-					new Point(-171.0 + 100, 14.5 + 100),
-					new Point(-171.067 + 100, 1.873 + 100),
-					new Point(-186.923 + 100, -53.288 + 100),
-					new Point(-191.571 + 100, -61.5 + 100),
-					new Point(-202.667 + 100, -62.217 + 100),
-				].reverse()
 			}],
 			...options,
 		});
