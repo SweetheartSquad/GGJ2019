@@ -6,7 +6,7 @@ import WaveSet from './WaveSet';
 import NavMesh from './NavMesh';
 import Character from './Character';
 import { Boat } from './Boat';
-import { lerp } from './utils';
+import { lerp, clamp } from './utils';
 import InteractableMesh from './InteractableMesh';
 
 export const playerSpeedX = 1.1;
@@ -199,6 +199,19 @@ export default class PlayScene extends Container {
 			this.boat.sortDirty = true;
 			player.zIndex = player.p.y;
 		}
+		player.camPoint.position.x = player.v.x * size.x * 0.01;
+
+		// camera
+		this.s = lerp(this.s || 1, 1 - (Math.abs(player.v.y)+Math.abs(player.v.x))/64, 0.05);
+		this.scale.x = this.scale.y = lerp(this.scale.x, this.s, 0.2);
+	
+		var p = this.toLocal(PIXI.zero, player.camPoint);
+		this.x = lerp(this.x, p.x, 0.1);
+		this.y = lerp(this.y, player.p.y*this.scale.y, 0.1);
+		this.pivot.x = Math.floor(this.x);
+		this.pivot.y = Math.floor(this.y);
+		this.x = size.x/2;
+		this.y = size.y/4*1;
 
 		bounds.debugDraw(g);
 		interactiveBounds.debugDraw(g);
