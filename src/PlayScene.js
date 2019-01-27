@@ -91,7 +91,7 @@ export default class PlayScene extends Container {
 		player = new Character({
             name: 'fella',
             scale: 0.25,
-        });
+		});
 		player.camPoint = new PIXI.DisplayObject();
 		player.camPoint.visible = false;
 		player.con.addChild(player.camPoint);
@@ -168,6 +168,11 @@ export default class PlayScene extends Container {
 			player.spr.anchor.y = 1 + Math.abs(Math.pow(Math.sin(curTime / player.freq), 2)) / 20;
 		} else {
 			player.spr.anchor.y = 1;
+		}
+
+		if (Math.abs(player.v.y) > 0.01) {
+			this.boat.sortDirty = true;
+			player.con.zIndex = player.p.y;
 		}
 
 		player.update();
