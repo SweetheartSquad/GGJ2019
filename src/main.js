@@ -7,19 +7,27 @@ import PlayScene from './PlayScene'
 import game, { resources } from './Game';
 import { clamp } from './utils';
 import Player from './Player';
+import TextScene from './TextScene';
 
 let mouse;
 let activeScene;
 export let player;
 
-export function setScene(scene) {
+export function setScene(scene, text, time = 1000) {
 	if (activeScene) {
 		activeScene.destroy();
 	}
-	window.scene = activeScene = scene;
-	game.app.stage.addChild(activeScene);
+	if (text) {
+		window.scene = activeScene = new TextScene(text);
+		game.app.stage.addChild(activeScene);
+		setTimeout(() => {
+			setScene(scene);
+		}, time);
+	} else {
+		window.scene = activeScene = scene;
+		game.app.stage.addChild(activeScene);
+	}
 }
-
 
 export function getInput() {
 	var res = {
