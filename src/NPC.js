@@ -1,9 +1,10 @@
 import Character from "./Character";
 
 export default class NPC extends Character {
-	constructor(options) {
+	constructor({pitch = 1, lines = [], label = "", ...options}) {
 		super(options);
-		this.lines = options.lines;
-		this.label = options.label;
+		this.lines = lines;
+		this.label = label;
+		this.pitch = pitch;
 	}
 }

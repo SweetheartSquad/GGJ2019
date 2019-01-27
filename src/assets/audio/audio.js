@@ -20,6 +20,7 @@ import wavesUrl from './waves.mp3';
 // export { default as pull_cord } from './horn.mp3';
 // export { default as not_yet } from './NOT YET.mp3';
 export { default as thunder } from './thunder.mp3';
+export { default as talk } from './talk.mp3';
 export const rain = {
     url: rainUrl,
     metadata:{
