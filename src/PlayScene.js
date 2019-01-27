@@ -35,5 +35,6 @@ export default class PlayScene extends BoatScene {
 				},
 			}],
 		});
+		this.setRaining(true);
 	}
 }

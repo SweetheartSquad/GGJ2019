@@ -65,15 +65,11 @@ export default class BoatScene extends BaseScene {
 			}],
 			...options,
 		});
-
-		console.log(resources.rain);
-
-		resources.rain.data.play();
-
+		resources.rain.data.fade(resources.rain.data.volume(),0,1000);
+		this.raining = false;
 
 		this.screenFilter = new CustomFilter(resources.frag.data);
 		this.screenFilter.uniforms.whiteout = 0;
-		this.screenFilter.uniforms.raining = 1;
 		this.screenFilter.padding = 150;
 		window.screenFilter = this.screenFilter;
 
@@ -151,15 +147,29 @@ export default class BoatScene extends BaseScene {
 
 	queueLightning(){
 		this.lightningTimer = setTimeout(() => {
-			this.lightningStrike();
+			if (this.raining) {
+				this.lightningStrike();
+			}
 			this.queueLightning();
 		}, Math.random()*120000+3000);
+	}
+
+	setRaining(raining) {
+		if (raining === this.raining) {
+			return;
+		}
+		if (raining) {
+			resources.rain.data.fade(0,1,1000);
+		} else {
+			resources.rain.data.fade(1,0,1000);
+		}
+		this.raining = raining;
+		this.screenFilter.uniforms.raining = raining ? 1 : 0;
 	}
 
 	destroy(){
 		super.destroy();
 		clearTimeout(this.lightningTimer);
 		clearTimeout(this.thunderTimer);
-		resources.rain.stop();
 	}
 }
