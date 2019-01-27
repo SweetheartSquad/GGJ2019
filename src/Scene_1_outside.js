@@ -14,7 +14,7 @@ export default class extends BoatScene {
 				lines: ['Everybody inside!', 'No point getting wet out here.', 'Get inside with the others.'],
 			}, {
 				name: 'father',
-				x: 200,
+				x: 50,
 				y: 150,
 				lines: ['Is there anything I can do to help?', 'Where\'s the captain??'],
 			}, {
