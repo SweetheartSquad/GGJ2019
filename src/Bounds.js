@@ -44,14 +44,6 @@ export class Bounds extends Polygon {
 		}
 		return result;
 	}
-
-	onEnter() {
-
-	}
-
-	onExit() {
-
-	}
 }
 
 
