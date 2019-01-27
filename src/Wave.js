@@ -1,7 +1,7 @@
 import { Sprite } from "pixi.js/lib/core";
 import { resources } from './Game';
 import game from './Game';
-import { turbulence } from "./PlayScene";
+import { highSeas } from "./PlayScene";
 import { lerp } from "./utils";
 
 export default class Wave extends Sprite {
@@ -23,8 +23,8 @@ export default class Wave extends Sprite {
 		var time = game.app.ticker.lastTime / 200 + this.offsetX/ 200 + this.initialY;
 		const waveY = 0.5 * (Math.sin(time / 2) + Math.sin(time / 3)) + Math.sin(time * 5) * 0.05 * Math.sin(time / 5);
 		const waveX = Math.sin(time) + Math.sin(time * 5) * 0.05 * Math.sin(time / 5);
-		this.y = (waveY * this.amplitude * this.oscillationSwitch) * turbulence;
-		this.x = this.offsetX + (waveX * this.width / 6) * turbulence;
-		this.rotation = Math.sin(time) * lerp(turbulence, 2, 0.5) * 0.1;
+		this.y = (waveY * this.amplitude * this.oscillationSwitch) * highSeas;
+		this.x = this.offsetX + (waveX * this.width / 6) * highSeas;
+		this.rotation = Math.sin(time) * lerp(highSeas, 2, 0.5) * 0.1;
 	}
 }

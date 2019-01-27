@@ -3,7 +3,7 @@ precision mediump float;
 varying vec2 vTextureCoord;
 
 uniform sampler2D uSampler;
-uniform float turbulence;
+uniform float rain;
 uniform float whiteout;
 uniform float curTime;
 
@@ -19,19 +19,21 @@ float map(float value, float min1, float max1, float min2, float max2){
 
 void main(void) {
 	// get pixels
-	vec2 r = vTextureCoord;
+	vec2 uv = vTextureCoord;
+	float t = mod(curTime/1000.0,1000.0);
 
 	// original
 	vec3 orig = texture2D(uSampler, vTextureCoord).rgb;
 
 	// new
-	float rain = (rand(r.x+r.y*-0.1, mod(curTime/1000.0,1000.0))*2.0 - 1.0)*map(turbulence, 0.0, 1.0, 0.5, 1.0);
-	float rainStep = step(abs(rain), map(turbulence, 0.0, 1.0, 0.0, 0.5));
-	r.y += rain*rainStep*0.5;
-	r.x += rain*rainStep*0.5*0.1;
-	vec3 col = texture2D(uSampler, r).rgb;
+	float wind = map(rain, 0.0, 1.0, 0.1, 0.4);
+	float rainAmount = (rand(uv.x+uv.y*-wind, t)*2.0 - 1.0)*map(rain, 0.0, 1.0, 0.5, 1.0);
+	float rainStep = step(abs(rainAmount), map(rain, 0.0, 1.0, 0.0, 0.5));
+	uv.y += rainAmount*rainStep*0.5;
+	uv.x += rainAmount*rainStep*0.5*wind;
+	vec3 col = texture2D(uSampler, uv).rgb;
     col += vec3(whiteout);
-	
+
 	// combined
 	float mixAmount = 1.0;
 	vec3 outColor = mix(orig, col, mixAmount);

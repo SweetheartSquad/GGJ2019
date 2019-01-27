@@ -17,8 +17,9 @@ export const playerSpeedY = 0.4;
 let g = new Graphics();
 let player;
 
-let turbulenceInput = 0.3;
-export let turbulence = 1;
+let turbulenceTarget = 0.3;
+let turbulence = turbulenceTarget;
+export let highSeas = 1;
 
 export default class PlayScene extends Container {
 
@@ -176,10 +177,11 @@ export default class PlayScene extends Container {
 	update() {
 		g.clear();
 		const curTime = game.app.ticker.lastTime;
-		turbulenceInput = window.turbulence || turbulenceInput;
-		turbulence = lerp(0.3, 4, turbulenceInput);
+		turbulenceTarget = window.turbulence || turbulenceTarget;
+		turbulence = lerp(turbulence, turbulenceTarget, 0.1);
+		highSeas = lerp(0.3, 4, turbulence);
 		this.screenFilter.uniforms.curTime = curTime;
-		this.screenFilter.uniforms.turbulence = turbulenceInput;
+		this.screenFilter.uniforms.rain = turbulence;
 
 		const input = getInput();
 		// update player
@@ -239,11 +241,11 @@ export default class PlayScene extends Container {
 		this.x = size.x/2;
 		this.y = size.y/4*1;
 
-		this.boat.rotation = ((Math.sin(curTime / 300) + Math.sin(curTime / 200)) * 0.5 * 0.01) * turbulence;
+		this.boat.rotation = ((Math.sin(curTime / 300) + Math.sin(curTime / 200)) * 0.5 * 0.01) * highSeas;
 		const waveY = 0.5 * (Math.sin(curTime / 300) + Math.sin(curTime / 400)) + Math.sin(curTime / 10) * 0.05 * Math.sin(curTime / 50);
 		const waveX = Math.sin(curTime / 500) + Math.sin(curTime / 300) * 0.05 * Math.sin(curTime / 50);
-		this.boat.y = this.boat.bg.height / 2 + waveY * 4 * turbulence;
-		this.boat.x = this.boat.bg.width / 2 + waveX * 2 * turbulence;
+		this.boat.y = this.boat.bg.height / 2 + waveY * 4 * highSeas;
+		this.boat.x = this.boat.bg.width / 2 + waveX * 2 * highSeas;
 
 		this.bounds.debugDraw(g);
 		this.interactiveBounds.debugDraw(g);
