@@ -16,7 +16,7 @@ export default class extends InteriorScene {
 				],
 			},
       {
-        name: 'whizKid',
+        name: 'whizkid',
         x: 100,
         y: 50,
         lines: [
