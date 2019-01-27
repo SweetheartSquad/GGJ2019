@@ -42,13 +42,13 @@ export function toExterior(Scene) {
 export function toNextDay(Scene, day) {
 	return {
 		points: [
-			new Point(-450, 100),
-			new Point(-400, 100),
-			new Point(-400, 200),
-			new Point(-450, 200),
+			new Point(-480, 100),
+			new Point(-380, 100),
+			new Point(-380, 250),
+			new Point(-480, 250),
 		],
 		onEnter: () => {
-			player.saying = 'go to bed';
+			player.saying = 'Go to bed.';
 		},
 		onExit: () => {
 			player.saying = '';
