@@ -28,6 +28,20 @@ export default class PlayScene extends BoatScene {
 				y: 150,
 				label: 'say hi',
 				lines: ['hello', 'whats up', 'im done talking now'],
+			}, {
+				name: 'scout',
+				scale: 0.2,
+				x: -150,
+				y: 200,
+				label: 'say hi',
+				lines: ['hello', 'whats up', 'im done talking now'],
+			}, {
+				name: 'otherGuy',
+				scale: 0.2,
+				x: 100,
+				y: 250,
+				label: 'say hi',
+				lines: ['hello', 'whats up', 'im done talking now'],
 			}],
 			interact: [{
 				points: [

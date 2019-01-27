@@ -1,4 +1,6 @@
 export { default as oldGuy } from './old guy.png';
+export { default as scout } from './scout.png';
+export { default as otherGuy } from './some_other_guuy.png';
 export { default as dame } from './dame.png';
 export { default as fella } from './fella.png';
 export { default as fella_run_1 } from './fella1.png';
