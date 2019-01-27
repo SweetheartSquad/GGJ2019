@@ -1,3 +1,5 @@
+export { default as editor } from './editor.png';
+export { default as whizkid } from './whizkid.png';
 export { default as oldGuy } from './old guy.png';
 export { default as scout } from './scout.png';
 export { default as otherGuy } from './some_other_guuy.png';
@@ -11,3 +13,5 @@ export { default as wave2 } from './wave2.png';
 export { default as wave3 } from './wave3.png';
 export { default as boat } from './boat.png';
 export { default as boatFront } from './boat_front.png';
+export { default as interior } from './interior.png';
+export { default as interiorFront } from './interior_front.png';

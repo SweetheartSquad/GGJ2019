@@ -69,7 +69,7 @@ export class Character extends Container {
 		this.s = lerp(this.s, this.getScale(), .3);
 		this.spr.scale.y = (this.s + (Math.sin(curTime / this.freq + this.offset) / 50 + Math.abs(Math.sin(curTime / this.freq + this.offset) / 30))) * this.rawScale;
 		this.spr.scale.x = (this.flipped ? -this.s : this.s) * this.rawScale;
-		this.spr.skew.x = this.v.x / 50;
+		this.spr.skew.x = -this.v.x / 50;
 		this.shadow.width = this.spr.width - (Math.sin(curTime / this.freq + this.offset) / 30 + Math.abs(Math.sin(curTime / this.freq + this.offset) / 10)) * 64;
 		this.shadow.height = this.spr.height * 0.1;
 	}
