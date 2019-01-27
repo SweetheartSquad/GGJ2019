@@ -19,7 +19,7 @@ export default class extends InteriorScene {
 			}],
 			interact: [
 				toExterior(Scene_6_outside),
-				toNextDay(Scene_7_outside, 'Day 7')
+				toNextDay(Scene_7_outside, 'Day 30')
 			],
 		});
 	}
