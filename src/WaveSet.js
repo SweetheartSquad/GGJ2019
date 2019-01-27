@@ -1,10 +1,13 @@
-import { Container } from "pixi.js/lib/core";
 import size from "./size";
 import Wave from "./Wave";
+import { particles } from "pixi.js";
 
-export default class WaveSet extends Container{
+export default class WaveSet extends particles.ParticleContainer {
     constructor(x, y, amplitude){
-        super();
+        super(100, {
+            position: true,
+            rotation: true,
+        });
         
         this.initialX = x;
         this.x = x;
@@ -28,6 +31,7 @@ export default class WaveSet extends Container{
         }
         this.waves.forEach((wave) => {
             wave.offsetX += 1;
+            wave.update();
         });
     }
 

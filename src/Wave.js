@@ -19,13 +19,12 @@ export default class Wave extends Sprite {
 		this.oscillationSwitch = oscillationSwitch;
 	}
 
-	updateTransform() {
-		super.updateTransform();
+	update() {
 		var time = game.app.ticker.lastTime / 200 + this.initialX;
 		const waveY = 0.5 * (Math.sin(time / 2) + Math.sin(time / 3)) + Math.sin(time * 5) * 0.05 * Math.sin(time / 5);
 		const waveX = Math.sin(time) + Math.sin(time * 5) * 0.05 * Math.sin(time / 5);
 		this.y = this.initialY + (waveY * this.amplitude * this.oscillationSwitch) * turbulence;
 		this.x = this.offsetX + (waveX * this.width / 6) * turbulence;
-		this.skew.y = Math.sin(time) * lerp(turbulence, 2, 0.5) * 0.1;
+		this.rotation = Math.sin(time) * lerp(turbulence, 2, 0.5) * 0.1;
 	}
 }
