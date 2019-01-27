@@ -8,7 +8,7 @@ export default class extends BoatScene {
 		super({
 			npcs: [{
 				name: 'dame',
-				x: 0,
+				x: 250,
 				y: 150,
 				lines: [
           'I was worried we had run out of sardines.',
