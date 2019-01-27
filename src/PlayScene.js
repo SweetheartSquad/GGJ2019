@@ -10,6 +10,7 @@ import { lerp, clamp } from './utils';
 import InteractableMesh from './InteractableMesh';
 import { createDialog } from './Dialog';
 import NPC from './NPC';
+import CustomFilter from './CustomFilter';
 
 export const playerSpeedX = 1.1;
 export const playerSpeedY = 0.4;
@@ -23,6 +24,12 @@ export default class PlayScene extends Container {
 
 	constructor() {
 		super();
+		this.screenFilter = new CustomFilter(resources.frag.data);
+		this.screenFilter.uniforms.whiteout = 0;
+		this.screenFilter.padding = 150;
+		window.screenFilter = this.screenFilter;
+
+		this.filters = [this.screenFilter];
 
 		// waves
 		this.waveSets = [];
@@ -167,13 +174,12 @@ export default class PlayScene extends Container {
 	}
 
 	update() {
-		this.waveSets.forEach((waveSet) => {
-			waveSet.update();
-		});
-
 		g.clear();
 		const curTime = game.app.ticker.lastTime;
+		turbulenceInput = window.turbulence || turbulenceInput;
 		turbulence = lerp(0.3, 4, turbulenceInput);
+		this.screenFilter.uniforms.curTime = curTime;
+		this.screenFilter.uniforms.turbulence = turbulenceInput;
 
 		const input = getInput();
 		// update player
@@ -233,14 +239,14 @@ export default class PlayScene extends Container {
 		this.x = size.x/2;
 		this.y = size.y/4*1;
 
-		this.bounds.debugDraw(g);
-		this.interactiveBounds.debugDraw(g);
-
 		this.boat.rotation = ((Math.sin(curTime / 300) + Math.sin(curTime / 200)) * 0.5 * 0.01) * turbulence;
 		const waveY = 0.5 * (Math.sin(curTime / 300) + Math.sin(curTime / 400)) + Math.sin(curTime / 10) * 0.05 * Math.sin(curTime / 50);
 		const waveX = Math.sin(curTime / 500) + Math.sin(curTime / 300) * 0.05 * Math.sin(curTime / 50);
 		this.boat.y = this.boat.bg.height / 2 + waveY * 4 * turbulence;
 		this.boat.x = this.boat.bg.width / 2 + waveX * 2 * turbulence;
+
+		this.bounds.debugDraw(g);
+		this.interactiveBounds.debugDraw(g);
 	}
 	addWaveSet(x, y, amplitude) {
 		var waveSet = new WaveSet(x, y, amplitude);
