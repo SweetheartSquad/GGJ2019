@@ -1,7 +1,5 @@
 import InteriorScene from './InteriorScene';
 import Scene_1_outside from './Scene_1_outside';
-import { Point } from 'pixi.js/lib/core';
-import { setScene, player } from './main';
 import { toExterior, toNextDay } from './helpers';
 import Scene_2_outside from './Scene_2_outside';
 
