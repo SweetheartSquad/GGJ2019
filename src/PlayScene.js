@@ -61,7 +61,8 @@ let interactiveBounds = new InteractableMesh([{
 		new Point(140 - 400, 400 - 400),
 	], 
 	onEnter: ()=>{console.log("Enter")},
-	onExit: ()=>{console.log("Exit")}
+	onExit: ()=>{console.log("Exit")},
+	onInteract: ()=>{console.log("You poop")}
 }]);
 
 

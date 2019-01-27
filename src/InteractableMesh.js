@@ -6,9 +6,10 @@ export default class InteractableMesh extends BoundsMesh{
 		super(areas.map(({
             points,
             onEnter,
-            onExit
+            onExit,
+            onInteract
 		}) => ({
-			bounds: new InteractiveBounds(points, onEnter, onExit),
+			bounds: new InteractiveBounds(points,  onInteract, onEnter, onExit),
 		})));
 		this.boundsDebugColor = 0x00ff00;
     }
