@@ -18,49 +18,49 @@ export default class BoatScene extends BaseScene {
 			floor: boat,
 			nav: [{
 				points: [
-					new Point(-650.0, 86.5),
-					new Point(253.804, 79.5),
-					new Point(347.0, 265.5),
-					new Point(-650.0, 265.5),
-					new Point(-650.0, 86.5),
+					new Point(-650.0 + 100, 86.5 + 100),
+					new Point(253.804 + 100, 79.5 + 100),
+					new Point(347.0 + 100, 265.5 + 100),
+					new Point(-650.0 + 100, 265.5 + 100),
+					new Point(-650.0 + 100, 86.5 + 100),
 				]
 			}, {
 				points: [
-					new Point(-426.0, 19.5),
-					new Point(103.551, 4.5),
-					new Point(158.0, 117.5),
-					new Point(-426.0, 112.5),
-					new Point(-426.0, 19.5),
+					new Point(-426.0 + 100, 19.5 + 100),
+					new Point(103.551 + 100, 4.5 + 100),
+					new Point(158.0 + 100, 117.5 + 100),
+					new Point(-426.0 + 100, 112.5 + 100),
+					new Point(-426.0 + 100, 19.5 + 100),
 				]
 			}, {
 				points: [
-					new Point(165.333, -82.5),
-					new Point(0.667, -82.5),
-					new Point(-5.0, -79.5),
-					new Point(-6.284, -72.612),
-					new Point(263.0, 272.5),
-					new Point(557.343, 266.275),
-					new Point(576.0, 260.5),
-					new Point(568.5, 243.909),
-					new Point(201.194, -67.095),
-					new Point(183.0, -78.5),
-					new Point(165.333, -82.5),
+					new Point(165.333 + 100, -82.5 + 100),
+					new Point(0.667 + 100, -82.5 + 100),
+					new Point(-5.0 + 100, -79.5 + 100),
+					new Point(-6.284 + 100, -72.612 + 100),
+					new Point(263.0 + 100, 272.5 + 100),
+					new Point(557.343 + 100, 266.275 + 100),
+					new Point(576.0 + 100, 260.5 + 100),
+					new Point(568.5 + 100, 243.909 + 100),
+					new Point(201.194 + 100, -67.095 + 100),
+					new Point(183.0 + 100, -78.5 + 100),
+					new Point(165.333 + 100, -82.5 + 100),
 				].reverse()
 			}, {
 				points: [
-					new Point(-202.667, -62.217),
-					new Point(-411.655, -57.702),
-					new Point(-419.0, -56.5),
-					new Point(-421.485, -49.066),
-					new Point(-425.469, 20.269),
-					new Point(-423.0, 27.5),
-					new Point(-416.994, 29.154),
-					new Point(-183.34, 20.167),
-					new Point(-171.0, 14.5),
-					new Point(-171.067, 1.873),
-					new Point(-186.923, -53.288),
-					new Point(-191.571, -61.5),
-					new Point(-202.667, -62.217),
+					new Point(-202.667 + 100, -62.217 + 100),
+					new Point(-411.655 + 100, -57.702 + 100),
+					new Point(-419.0 + 100, -56.5 + 100),
+					new Point(-421.485 + 100, -49.066 + 100),
+					new Point(-425.469 + 100, 20.269 + 100),
+					new Point(-423.0 + 100, 27.5 + 100),
+					new Point(-416.994 + 100, 29.154 + 100),
+					new Point(-183.34 + 100, 20.167 + 100),
+					new Point(-171.0 + 100, 14.5 + 100),
+					new Point(-171.067 + 100, 1.873 + 100),
+					new Point(-186.923 + 100, -53.288 + 100),
+					new Point(-191.571 + 100, -61.5 + 100),
+					new Point(-202.667 + 100, -62.217 + 100),
 				].reverse()
 			}],
 			...options,
@@ -113,8 +113,8 @@ export default class BoatScene extends BaseScene {
 		this.floor.rotation = ((Math.sin(curTime / 300) + Math.sin(curTime / 200)) * 0.5 * 0.01) * highSeas;
 		const waveY = 0.5 * (Math.sin(curTime / 300) + Math.sin(curTime / 400)) + Math.sin(curTime / 10) * 0.05 * Math.sin(curTime / 50);
 		const waveX = Math.sin(curTime / 500) + Math.sin(curTime / 300) * 0.05 * Math.sin(curTime / 50);
-		this.floor.y = this.floor.bg.height / 2 + waveY * 4 * highSeas;
-		this.floor.x = this.floor.bg.width / 2 + waveX * 2 * highSeas;
+		this.floor.y = size.y * 0.4 + waveY * 4 * highSeas;
+		this.floor.x = size.x / 2 + waveX * 2 * highSeas;
 	}
 
 	addWaveSet(x, y, amplitude) {
