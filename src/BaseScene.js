@@ -5,18 +5,20 @@ import { createDialog } from "./Dialog";
 import { player } from "./main";
 import { lerp } from "./utils";
 import size from "./size";
+import NPC from "./NPC";
 
 let g = new Graphics();
 
 export default class BaseScene extends Container{
 	constructor({
-		npcs = [],
+		npcs: npcDefs = [],
 		floor,
 		nav = [],
 		interact = [],
 	}) {
 		super();
 		this.floor = floor;
+		const npcs = npcDefs.map(npcDef => new NPC(npcDef));
 		npcs.forEach(npc => floor.addChild(npc));
 
 		this.bounds = new NavMesh(nav);
