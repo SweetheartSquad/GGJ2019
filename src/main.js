@@ -11,7 +11,7 @@ let mouse;
 let activeScene;
 export let player;
 
-export function setScene(scene, text, time = 1000) {
+export function setScene(scene, text, time = 2500) {
 	if (activeScene) {
 		activeScene.destroy();
 	}

@@ -1,5 +1,6 @@
 import { Container, Text } from "pixi.js/lib/core";
 import size from "./size";
+import { resources } from "./Game";
 
 const font = {
 	fontFamily: 'font',
@@ -18,7 +19,8 @@ export default class TextScene extends Container {
 			this.addChild(this.text);
 			this.x = size.x/2;
 			this.y = size.y/2;
-		}, 100);
+			resources.dramatic.data.play();
+		}, 500);
 	}
 
 	update(){}
