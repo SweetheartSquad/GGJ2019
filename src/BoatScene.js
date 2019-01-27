@@ -68,6 +68,10 @@ export default class BoatScene extends BaseScene {
 		resources.rain.data.fade(resources.rain.data.volume(),0,1000);
 		this.raining = false;
 
+		setTimeout(()=>{
+			resources.waves.data.fade(resources.waves.data.volume(),.4,1000);
+		});
+
 		this.screenFilter = new CustomFilter(resources.frag.data);
 		this.screenFilter.uniforms.whiteout = 0;
 		this.screenFilter.padding = 150;
@@ -171,5 +175,7 @@ export default class BoatScene extends BaseScene {
 		super.destroy();
 		clearTimeout(this.lightningTimer);
 		clearTimeout(this.thunderTimer);
+		resources.waves.data.fade(resources.waves.data.volume(),0,1000);
+		resources.thunder.data.stop();
 	}
 }
