@@ -34,10 +34,10 @@ export default class BaseScene extends Container {
 					} = npc;
 					return {
 						points: [
-							new Point(x - width, y + 50),
-							new Point(x + width, y + 50),
-							new Point(x + width, y - 50),
-							new Point(x - width, y - 50),
+							new Point(x - width, y + 75),
+							new Point(x + width, y + 75),
+							new Point(x + width, y - 75),
+							new Point(x - width, y - 75),
 						],
 						...createDialog(npc, {
 							label,
