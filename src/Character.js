@@ -33,13 +33,10 @@ export class Character extends Container {
 
 		this.flipped = false;
 
-		console.log(resources);
 		this.shadow = new Sprite(resources['shadows'].texture);
-		// this.shadow.filters = [sprite_filter];
 		this.shadow.anchor.x = 0.5;
 		this.shadow.anchor.y = .75;
 		this.spr = new Sprite(resources[name].texture);
-		// this.spr.filters = [sprite_filter];
 		this.spr.anchor.x = 0.5;
 		this.spr.anchor.y = 1.0;
 		this.addChild(this.shadow);
