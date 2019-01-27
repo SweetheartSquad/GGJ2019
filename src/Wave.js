@@ -7,9 +7,9 @@ import { lerp } from "./utils";
 export default class Wave extends Sprite {
 
 	constructor(x = 0, y = 0, amplitude, oscillationSwitch) {
-		super(resources[`wave${Math.floor(Math.abs(x-y)%3)+1}`].texture);
-		this.initialY = y;
+		super(resources[`wave${Math.floor(Math.abs(y)%3)+1}`].texture);
 		this.initialX = x;
+		this.initialY = y;
 		this.offsetX = x;
 		this.y = y;
 		this.x = x;
@@ -20,10 +20,10 @@ export default class Wave extends Sprite {
 	}
 
 	update() {
-		var time = game.app.ticker.lastTime / 200 + this.initialX;
+		var time = game.app.ticker.lastTime / 200 + this.offsetX/ 200 + this.initialY;
 		const waveY = 0.5 * (Math.sin(time / 2) + Math.sin(time / 3)) + Math.sin(time * 5) * 0.05 * Math.sin(time / 5);
 		const waveX = Math.sin(time) + Math.sin(time * 5) * 0.05 * Math.sin(time / 5);
-		this.y = this.initialY + (waveY * this.amplitude * this.oscillationSwitch) * turbulence;
+		this.y = (waveY * this.amplitude * this.oscillationSwitch) * turbulence;
 		this.x = this.offsetX + (waveX * this.width / 6) * turbulence;
 		this.rotation = Math.sin(time) * lerp(turbulence, 2, 0.5) * 0.1;
 	}

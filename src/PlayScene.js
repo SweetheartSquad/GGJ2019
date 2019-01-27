@@ -34,21 +34,21 @@ export default class PlayScene extends Container {
 		// waves
 		this.waveSets = [];
 
-		this.addWaveSet(0, 160, 10);
-		this.addWaveSet(32, 200, 10);
-		this.addWaveSet(64, 240, 30);
-		this.addWaveSet(128, 280, 20);
-		this.addWaveSet(192, 320, 20);
-		this.addWaveSet(210, 360, 20);
-		this.addWaveSet(250, 400, 20);
-		this.addWaveSet(260, 440, 20);
+		this.addWaveSet(0, 161, 10);
+		this.addWaveSet(32, 202, 10);
+		this.addWaveSet(64, 243, 30);
+		this.addWaveSet(128, 281, 20);
+		this.addWaveSet(192, 322, 20);
+		this.addWaveSet(210, 363, 20);
+		this.addWaveSet(250, 401, 20);
+		this.addWaveSet(260, 442, 20);
 
 		this.boat = new Boat();
 		this.addChild(this.boat);
-		this.addWaveSet(192, size.y - 220, 20);
+		this.addWaveSet(192, size.y - 223, 20);
 		this.addWaveSet(128, size.y - 180, 20);
-		this.addWaveSet(64, size.y - 140, 30);
-		this.addWaveSet(0, size.y - 110, 10);
+		this.addWaveSet(64, size.y - 142, 30);
+		this.addWaveSet(0, size.y - 114, 10);
 
 
 		player = new Character({

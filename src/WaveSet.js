@@ -9,9 +9,7 @@ export default class WaveSet extends particles.ParticleContainer {
             rotation: true,
         });
         
-        this.initialX = x;
         this.x = x;
-        this.initialY = y;
         this.y = y;
         this.waves = [];
         this.amplitude = amplitude;
@@ -22,7 +20,7 @@ export default class WaveSet extends particles.ParticleContainer {
     updateTransform(){
         super.updateTransform();
         const wave = this.waves[this.lastWave];
-        if(wave.x > size.x){    
+        if(wave.x > size.x*1.1){    
             wave.offsetX = this.waves[(this.lastWave+1)%this.waves.length].offsetX - wave.width / 2;
             --this.lastWave;
             if (this.lastWave < 0) {
@@ -36,10 +34,10 @@ export default class WaveSet extends particles.ParticleContainer {
     }
 
     initWaves(){
-        var spanned = -size.x - this.x;
+        var spanned = -size.x*1.1 - this.x;
         var oscillationSwitch = 1;
-        while(spanned < size.x){
-            var wave = new Wave(spanned, 0, this.amplitude, oscillationSwitch);
+        while(spanned < size.x*1.1){
+            var wave = new Wave(spanned, this.y, this.amplitude, oscillationSwitch);
             oscillationSwitch *= -1;
             spanned += wave.width / 2;
             this.addChild(wave);
