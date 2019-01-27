@@ -13,22 +13,24 @@ let activeScene;
 export let player;
 
 export function setScene(scene) {
+	if (activeScene) {
+		activeScene.destroy();
+	}
 	activeScene = scene;
 	game.app.stage.addChild(activeScene);
 }
 
 
-export function getInput(){
+export function getInput() {
 	var res = {
-		move:{
+		move: {
 			x: gamepads.getAxis(gamepads.LSTICK_H),
 			y: gamepads.getAxis(gamepads.LSTICK_V)
 		},
-		interact:
-			gamepads.isJustDown(gamepads.A) || 
-			gamepads.isJustDown(gamepads.B) || 
-			gamepads.isJustDown(gamepads.X) || 
-			gamepads.isJustDown(gamepads.Y) || 
+		interact: gamepads.isJustDown(gamepads.A) ||
+			gamepads.isJustDown(gamepads.B) ||
+			gamepads.isJustDown(gamepads.X) ||
+			gamepads.isJustDown(gamepads.Y) ||
 			keys.isJustDown(keys.SPACE) ||
 			keys.isJustDown(keys.E) ||
 			keys.isJustDown(keys.Z) ||
@@ -36,13 +38,16 @@ export function getInput(){
 			keys.isJustDown(keys.ENTER)
 	};
 
-	if(keys.isDown(keys.A) || keys.isDown(keys.LEFT)){
+	if (keys.isDown(keys.A) || keys.isDown(keys.LEFT)) {
 		res.move.x -= 1;
-	}if(keys.isDown(keys.D) || keys.isDown(keys.RIGHT)){
+	}
+	if (keys.isDown(keys.D) || keys.isDown(keys.RIGHT)) {
 		res.move.x += 1;
-	}if(keys.isDown(keys.W) || keys.isDown(keys.UP)){
+	}
+	if (keys.isDown(keys.W) || keys.isDown(keys.UP)) {
 		res.move.y -= 1;
-	}if(keys.isDown(keys.S) || keys.isDown(keys.DOWN)){
+	}
+	if (keys.isDown(keys.S) || keys.isDown(keys.DOWN)) {
 		res.move.y += 1;
 	}
 

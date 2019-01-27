@@ -11,7 +11,7 @@ let turbulenceTarget = 0.3;
 let turbulence = turbulenceTarget;
 export let highSeas = 1;
 
-export default class BoatScene extends BaseScene{
+export default class BoatScene extends BaseScene {
 	constructor(options) {
 		const boat = new Boat();
 		super({
@@ -24,7 +24,7 @@ export default class BoatScene extends BaseScene{
 					new Point(-650.0, 265.5),
 					new Point(-650.0, 86.5),
 				]
-			},{
+			}, {
 				points: [
 					new Point(-426.0, 19.5),
 					new Point(103.551, 4.5),
@@ -32,7 +32,7 @@ export default class BoatScene extends BaseScene{
 					new Point(-426.0, 112.5),
 					new Point(-426.0, 19.5),
 				]
-			},{
+			}, {
 				points: [
 					new Point(165.333, -82.5),
 					new Point(0.667, -82.5),
@@ -46,7 +46,7 @@ export default class BoatScene extends BaseScene{
 					new Point(183.0, -78.5),
 					new Point(165.333, -82.5),
 				].reverse()
-			},{
+			}, {
 				points: [
 					new Point(-202.667, -62.217),
 					new Point(-411.655, -57.702),
@@ -63,17 +63,6 @@ export default class BoatScene extends BaseScene{
 					new Point(-202.667, -62.217),
 				].reverse()
 			}],
-			interact: [{
-				points: [
-					new Point(140 - 400, 140 - 400),
-					new Point(240 - 400, 140 - 400),
-					new Point(240 - 400, 400 - 400),
-					new Point(140 - 400, 400 - 400),
-				], 
-				onEnter: ()=>{console.log("Enter")},
-				onExit: ()=>{console.log("Exit")},
-				onInteract: ()=>{console.log("You poop")}
-			}],
 			...options,
 		});
 		this.screenFilter = new CustomFilter(resources.frag.data);
@@ -84,7 +73,7 @@ export default class BoatScene extends BaseScene{
 
 		this.filters = [this.screenFilter];
 
-		
+
 
 		// waves
 		this.waveSets = [];
