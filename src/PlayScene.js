@@ -8,6 +8,8 @@ import Character from './Character';
 import { Boat } from './Boat';
 import { lerp, clamp } from './utils';
 import InteractableMesh from './InteractableMesh';
+import { createDialog } from './Dialog';
+import NPC from './NPC';
 
 export const playerSpeedX = 1.1;
 export const playerSpeedY = 0.4;
@@ -23,6 +25,7 @@ export default class PlayScene extends Container {
 	constructor() {
 		super();
 
+		// waves
 		this.waveSets = [];
 
 		this.addWaveSet(0, 160, 10);
@@ -41,55 +44,39 @@ export default class PlayScene extends Container {
 		this.addWaveSet(64, size.y - 140, 30);
 		this.addWaveSet(0, size.y - 110, 10);
 
-		// for(let i = -2; i < 10; i++){
-		//     this.addWaveSet(i * 64, i * size.y/10, 20);
-		//     if(i == 5){
-
-		//     this.boat = new Sprite(resources.boat.texture);
-		//     this.addChild(this.boat);
-		//     }
-		// }
-
 
 		player = new Character({
 			name: 'fella',
-			scale: 0.4,
-			x: bounds.getCenter().x,
-			y: bounds.getCenter().y,
+			scale: 0.2,
+			x: 0,
+			y: 0,
 		});
 		player.camPoint = new PIXI.DisplayObject();
 		player.camPoint.visible = false;
 		player.addChild(player.camPoint);
-		player.p.x = bounds.getCenter().x;
-		player.p.y = bounds.getCenter().y;
-		// characters.characters.push(player);
 
 		this.boat.addChild(g);
 		this.boat.addChild(player);
 
-		const npc = new Character({
-			name: 'fella',
-			scale: 0.4,
-			x: bounds.getCenter().x+40,
-			y: bounds.getCenter().y+100,
-		});
-		this.boat.addChild(npc);
-
-		const font = {
-			fontFamily: 'Comic Sans MS',
-			fontWeight: 'bold',
-			fontSize: 32,
-			fill: 0x000000,
-			stroke: 0xFFFFFF,
-			strokeThickness: 3,
-			align: 'left',
-			antiAliased: false
-		};
-		const text = new PIXI.Text("", font);
-		text.y = -200;
-		text.anchor.x = 0.5;
-		text.anchor.y = 0.5;
-		player.addChild(text);
+		const npcs = [
+			new NPC({
+				name: 'fella',
+				scale: 0.2,
+				x: 0,
+				y: 0,
+				label: 'say hi',
+				lines: ['hello','whats up','im done talking now'],
+			}),
+			new NPC({
+				name: 'dame',
+				scale: 0.2,
+				x: 130,
+				y: 150,
+				label: 'say hi',
+				lines: ['hello','whats up','im done talking now'],
+			})
+		]
+		npcs.forEach(npc => this.boat.addChild(npc));
 
 
 		this.bounds = new NavMesh([{
@@ -142,7 +129,29 @@ export default class PlayScene extends Container {
 			onEnter: ()=>{console.log("Enter")},
 			onExit: ()=>{console.log("Exit")},
 			onInteract: ()=>{console.log("You poop")}
-		}]);
+		}].concat(
+			npcs.map(npc => {
+				const {
+					x,
+					y,
+					width,
+					lines,
+					label,
+				} = npc;
+				return {
+					points: [
+						new Point(x - width, y+50),
+						new Point(x + width, y+50),
+						new Point(x + width, y-50),
+						new Point(x - width, y-50),
+					],
+					...createDialog(npc, {
+						label,
+						lines,
+					})
+				};
+			})
+		));
 	}
 
 	destroy() {
