@@ -13,57 +13,6 @@ export const playerSpeedX = 1.1;
 export const playerSpeedY = 0.4;
 let g = new Graphics();
 let player;
-let bounds = new NavMesh([{
-	points: [
-		new Point(140 - 400, 140 - 400),
-		new Point(700 - 400, 140 - 400),
-		new Point(700 - 400, 400 - 400),
-		new Point(140 - 400, 400 - 400),
-	]
-}, {
-	points: [
-		new Point(540 - 400, 540 - 400),
-		new Point(400 - 400, 540 - 400),
-		new Point(400 - 400, 300 - 400),
-		new Point(540 - 400, 300 - 400),
-	]
-}, {
-	points: [
-		new Point(240 - 400, 240 - 400),
-		new Point(400 - 400, 240 - 400),
-		new Point(400 - 400, 300 - 400),
-		new Point(240 - 400, 300 - 400),
-	]
-}, {
-	points: [
-		new Point(240 - 400, 340 - 400),
-		new Point(500 - 400, 350 - 400),
-		new Point(500 - 400, 300 - 400),
-		new Point(340 - 400, 300 - 400),
-	]
-}, {
-	points: [
-		new Point(500 - 400, 500 - 400),
-		new Point(700 - 400, 200 - 400),
-		new Point(750 - 400, 180 - 400),
-		new Point(800 - 400, 200 - 400),
-		new Point(800 - 400, 800 - 400),
-		new Point(500 - 400, 800 - 400),
-	]
-}]);
-
-
-let interactiveBounds = new InteractableMesh([{
-	points: [
-		new Point(140 - 400, 140 - 400),
-		new Point(240 - 400, 140 - 400),
-		new Point(240 - 400, 400 - 400),
-		new Point(140 - 400, 400 - 400),
-	], 
-	onEnter: ()=>{console.log("Enter")},
-	onExit: ()=>{console.log("Exit")},
-	onInteract: ()=>{console.log("You poop")}
-}]);
 
 
 let turbulenceInput = 0.3;
@@ -141,6 +90,59 @@ export default class PlayScene extends Container {
 		text.anchor.x = 0.5;
 		text.anchor.y = 0.5;
 		player.addChild(text);
+
+
+		this.bounds = new NavMesh([{
+			points: [
+				new Point(140 - 400, 140 - 400),
+				new Point(700 - 400, 140 - 400),
+				new Point(700 - 400, 400 - 400),
+				new Point(140 - 400, 400 - 400),
+			]
+		}, {
+			points: [
+				new Point(540 - 400, 540 - 400),
+				new Point(400 - 400, 540 - 400),
+				new Point(400 - 400, 300 - 400),
+				new Point(540 - 400, 300 - 400),
+			]
+		}, {
+			points: [
+				new Point(240 - 400, 240 - 400),
+				new Point(400 - 400, 240 - 400),
+				new Point(400 - 400, 300 - 400),
+				new Point(240 - 400, 300 - 400),
+			]
+		}, {
+			points: [
+				new Point(240 - 400, 340 - 400),
+				new Point(500 - 400, 350 - 400),
+				new Point(500 - 400, 300 - 400),
+				new Point(340 - 400, 300 - 400),
+			]
+		}, {
+			points: [
+				new Point(500 - 400, 500 - 400),
+				new Point(700 - 400, 200 - 400),
+				new Point(750 - 400, 180 - 400),
+				new Point(800 - 400, 200 - 400),
+				new Point(800 - 400, 800 - 400),
+				new Point(500 - 400, 800 - 400),
+			]
+		}]);
+
+
+		this.interactiveBounds = new InteractableMesh([{
+			points: [
+				new Point(140 - 400, 140 - 400),
+				new Point(240 - 400, 140 - 400),
+				new Point(240 - 400, 400 - 400),
+				new Point(140 - 400, 400 - 400),
+			], 
+			onEnter: ()=>{console.log("Enter")},
+			onExit: ()=>{console.log("Exit")},
+			onInteract: ()=>{console.log("You poop")}
+		}]);
 	}
 
 	destroy() {
@@ -164,8 +166,8 @@ export default class PlayScene extends Container {
 		player.v.y *= 0.8;
 		player.v.y += input.move.y * playerSpeedY;
 
-		bounds.update(player);
-		interactiveBounds.update(player);
+		this.bounds.update(player);
+		this.interactiveBounds.update(player);
 
 
 		player.p.x += player.v.x;
@@ -214,8 +216,8 @@ export default class PlayScene extends Container {
 		this.x = size.x/2;
 		this.y = size.y/4*1;
 
-		bounds.debugDraw(g);
-		interactiveBounds.debugDraw(g);
+		this.bounds.debugDraw(g);
+		this.interactiveBounds.debugDraw(g);
 
 		this.boat.rotation = ((Math.sin(curTime / 300) + Math.sin(curTime / 200)) * 0.5 * 0.01) * turbulence;
 		const waveY = 0.5 * (Math.sin(curTime / 300) + Math.sin(curTime / 400)) + Math.sin(curTime / 10) * 0.05 * Math.sin(curTime / 50);
