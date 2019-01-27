@@ -6,12 +6,16 @@ import WaveSet from "./WaveSet";
 import game, { resources } from "./Game";
 import size from "./size";
 import { lerp } from "./utils";
+import { Graphics } from "pixi.js/lib/core";
 
 let turbulence;
 export let highSeas = 1;
 
 export default class BoatScene extends BaseScene {
-	constructor(options) {
+	constructor({
+		day = true,
+		...options
+	} = {}) {
 		const boat = new Boat();
 		super({
 			floor: boat,
@@ -87,6 +91,14 @@ export default class BoatScene extends BaseScene {
 		// waves
 		this.waveSets = [];
 
+		if (day) {
+			this.sky = new Graphics();
+			this.sky.beginFill(day ? 0xFFFFFF : 0);
+			this.sky.drawRect(-size.x/2,-size.y/2,size.x*1.5,size.y*1.5);
+			this.sky.endFill();
+			this.addChild(this.sky);
+		}
+		this.addChild(this.floor);
 		this.addWaveSet(0, 161, 10);
 		this.addWaveSet(32, 202, 10);
 		this.addWaveSet(64, 243, 30);

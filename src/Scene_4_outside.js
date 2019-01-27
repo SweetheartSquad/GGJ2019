@@ -6,6 +6,7 @@ import { toInterior } from './helpers';
 export default class extends BoatScene {
 	constructor() {
 		super({
+			day: false,
 			npcs: [{
 				name: 'editor',
 				x: 0,

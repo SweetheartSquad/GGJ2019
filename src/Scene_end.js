@@ -19,7 +19,9 @@ let end = 0;
 
 export class Scene_end extends BoatScene {
 	constructor() {
-		super();
+		super({
+			day: false,
+		});
 		this.setRaining(true);
 		this.setTurbulence(turbulences[end] || 10);
 		const line = endLines[end];
