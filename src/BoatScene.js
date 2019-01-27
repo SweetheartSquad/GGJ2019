@@ -18,25 +18,23 @@ export default class BoatScene extends BaseScene {
 			floor: boat,
 			nav: [
 				{
-				points: [
+					points: [
 						new Point(-550.0, 217.5),
 						new Point(353.8, 206.5),
 						new Point(447.0, 382.5),
 						new Point(-550.0, 382.5),
-						new Point(-550.0, 217.5),
-				]
-			}, {
-				points: [
+					]
+					},{
+					points: [
 						new Point(-291.0, 142.83),
 						new Point(-287.15, 135.5),
 						new Point(-278.83, 131.83),
 						new Point(205.56, 121.5),
 						new Point(258.0, 234.5),
 						new Point(-291.0, 225.5),
-						new Point(-291.0, 142.83),
-				]
-			}, {
-				points: [
+					]
+					},{
+					points: [
 						new Point(255.33, 44.5),
 						new Point(110.67, 44.5),
 						new Point(105.0, 47.5),
@@ -47,10 +45,10 @@ export default class BoatScene extends BaseScene {
 						new Point(628.5, 350.91),
 						new Point(291.19, 59.9),
 						new Point(273.0, 48.5),
-						new Point(255.33, 44.5),
-				].reverse()
-			}, {
-				points: [
+					]
+					.reverse()
+					},{
+					points: [
 						new Point(-130.44, 68.5),
 						new Point(-283.6, 69.29),
 						new Point(-289.13, 70.3),
@@ -63,9 +61,10 @@ export default class BoatScene extends BaseScene {
 						new Point(-100.05, 125.27),
 						new Point(-118.59, 75.99),
 						new Point(-122.09, 69.1),
-						new Point(-130.44, 68.5),
-				].reverse()
-				}
+					]
+					.reverse()
+					}
+					
 			],
 			...options,
 		});

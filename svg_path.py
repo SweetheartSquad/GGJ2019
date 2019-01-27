@@ -19,6 +19,7 @@ if path:
         except:
             pass
     
+    points.pop()
     print("points: [")
     for point in points: 
         print("    new Point(" + str(round(point["x"], 2)) + ", " + str(round(point["y"], 2)) + "),")

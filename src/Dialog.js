@@ -1,5 +1,13 @@
 import game, { resources } from "./Game";
 
+const pitches = {
+	"fella" : 0.7,
+	"dame" : 2,
+	"oldGuy": 0.5,
+	"scout" : 1.5,
+	"otherGuy" : 1
+};
+
 export function createDialog(npc, {
 	label = '',
 	lines = [],
@@ -18,7 +26,7 @@ export function createDialog(npc, {
 				npc.saying = saying;
 				npc.s += 0.2;
 				const id = resources.talk.data.play();
-				resources.talk.data.rate(npc.pitch, id);
+				resources.talk.data.rate(pitches[npc.name], id);
 			} else {
 				npc.saying = '';
 			}
