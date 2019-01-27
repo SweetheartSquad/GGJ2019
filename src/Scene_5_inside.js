@@ -9,7 +9,7 @@ export default class extends InteriorScene {
       npcs: [{
 				name: 'editor',
 				x: 0,
-				y: 150,
+				y: 250,
 				lines: [
           'The kid is handling this well.',
           'I\'d be so scared if I were his age.',
@@ -18,7 +18,7 @@ export default class extends InteriorScene {
       {
         name: 'whizkid',
         x: 100,
-        y: 50,
+        y: 250,
         lines: [
           'This is so fun!',
           'I\'ve never been away from home for so long. ',
