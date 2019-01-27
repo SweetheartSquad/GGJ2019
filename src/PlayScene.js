@@ -9,6 +9,8 @@ import Character from './Character';
 import { Boat } from './Boat';
 import { lerp } from './utils';
 
+export const playerSpeedX = 1.1;
+export const playerSpeedY = 0.4;
 let g = new Graphics();
 let player;
 let bounds = new NavMesh([{
@@ -42,7 +44,9 @@ let bounds = new NavMesh([{
 }, {
 	points: [
 		new Point(500 - 400, 500 - 400),
-		new Point(800 - 400, 180 - 400),
+		new Point(700 - 400, 200 - 400),
+		new Point(750 - 400, 180 - 400),
+		new Point(800 - 400, 200 - 400),
 		new Point(800 - 400, 800 - 400),
 		new Point(500 - 400, 800 - 400),
 	]
@@ -129,8 +133,6 @@ export default class PlayScene extends Container {
         turbulence = lerp(0.3, 4, turbulenceInput);
 		
         const input = getInput();
-        const playerSpeedX = 1.1;
-        const playerSpeedY = 0.4;
 		// update player
 		player.v.x *= 0.8;
 		player.v.x += input.move.x * playerSpeedX;

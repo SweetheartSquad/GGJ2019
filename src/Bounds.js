@@ -18,7 +18,7 @@ export class Bounds extends Polygon {
 		this.center.y /= points.length;
 	}
 
-	dist(p,r) {
+	raycast(p,r) {
 		let minDist = Infinity;
 		let result;
 		for(let i = 0; i < this.points.length-1; i += 2) {
@@ -33,9 +33,12 @@ export class Bounds extends Polygon {
 			const dist = V.magnitude2(V.subtract(p, point));
 			if (dist < minDist) {
 				minDist = dist;
+				const normal = new V(y2 - y1, x1 - x2);
+				normal.normalize();
 				result = {
-					point: point,
-					normal: new Point(y2 - y1, -(x2 - x1))
+					point,
+					normal,
+					distance: dist,
 				};
 			}
 		}

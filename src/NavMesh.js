@@ -1,5 +1,6 @@
 import Bounds from "./Bounds";
 import V from './vector';
+import { playerSpeedX, playerSpeedY } from "./PlayScene";
 
 export default class NavMesh {
 	constructor(areas) {
@@ -17,7 +18,6 @@ export default class NavMesh {
 
 	update(player) {
 		// transition between areas
-		const start = player.p;
 		for (var i = 0; i < this.areas.length; ++i) {
 			if (i === this.current) {
 				continue;
@@ -30,37 +30,25 @@ export default class NavMesh {
 
 		// collision
 		const b = this.areas[this.current].bounds;
+		const start = player.p;
 		const end = b.center;
-		const d = b.dist(start, end);	
-
-		
 		this.rayStart = start;
 		this.rayEnd = end;
-		if (d) {
-			
-			this.intersectionPoint = d.point;
-			const vx = d.normal.x;
-			const vy = d.normal.y;
+		const hit = b.raycast(start, end);
+		
+		if (hit) {
+			const {
+				normal,
+				point,
+				distance,
+			} = hit;
+			this.normal = normal;
+			this.intersectionPoint = point;
 
-			console.log(d);
-
-			this.normx = vx;
-			this.normy = vy;
-
-			if(Math.abs(vx) > 0){
-				player.v.x += -(vx/Math.abs(vx)) * 5;
-			}else{
-				player.v.x = 0;
-			}
-			
-			if(Math.abs(vy) > 0){
-				player.v.y += -(vy/Math.abs(vy)) * 5;
-			}else{
-				player.v.y = 0;
-			}
-		}else{
-			this.normx = undefined;
-			this.normy = undefined;
+			player.v.x -= this.normal.x * distance * 0.01;
+			player.v.y -= this.normal.y * distance * 0.01;
+		} else {
+			this.normal = undefined;
 			this.intersectionPoint = undefined;
 		}
 	}
@@ -82,13 +70,11 @@ export default class NavMesh {
 
 			g.endFill();
 
-
-			if(this.normx){
-				g.beginFill(0xff00ff00, 1);
-				g.moveTo(this.intersectionPoint.x, this.intersectionPoint.y);
-				g.lineTo(this.normx, this.normy);
-				g.endFill();
-			}
+			g.beginFill(0);
+			g.lineStyle(3, 0xff00ff);
+			g.moveTo(this.intersectionPoint.x, this.intersectionPoint.y);
+			g.lineTo(this.intersectionPoint.x + this.normal.x * 100, this.intersectionPoint.y + this.normal.y * 100);
+			g.endFill();
 		}
 	}
 }
