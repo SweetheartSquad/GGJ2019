@@ -22,7 +22,7 @@ export function getInput(){
 			x: gamepads.getAxis(gamepads.LSTICK_H),
 			y: gamepads.getAxis(gamepads.LSTICK_V)
 		},
-		talk:
+		interact:
 			gamepads.isJustDown(gamepads.A) || 
 			gamepads.isJustDown(gamepads.B) || 
 			gamepads.isJustDown(gamepads.X) || 
