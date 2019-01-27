@@ -5,13 +5,13 @@ const pitches = {
 	"dame" : 2,
 	"oldGuy": 0.5,
 	"scout" : 1.5,
-	"otherGuy" : 1,
+	"father" : 1,
 	"whizkid": 1.7,
 	"editor": 1.2,
 };
 
 export function createDialog(npc, {
-	label = '',
+	label = 'talk',
 	lines = [],
 }) {
 	let i = 0;

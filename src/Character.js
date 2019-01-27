@@ -17,7 +17,7 @@ const font = {
 export class Character extends Container {
 	constructor({
 		name = '',
-		scale = 1,
+		scale = .2,
 		x = 0,
 		y = 0,
 	}) {
@@ -44,14 +44,12 @@ export class Character extends Container {
 		this.zIndex = this.p.y;
 		this.spr.scale.x = this.spr.scale.y = this.getScale() * this.rawScale;
 
-		this.text1 = new Text("", font);
-		this.text2 = new Text("", { ...font, strokeThickness: 0 });
-		this.text2.y = this.text1.y = -this.height - 32;
-		this.text2.anchor.x = this.text2.anchor.y = this.text1.anchor.x = this.text1.anchor.y = 0.5;
+		this.text = new Text("", font);
+		this.text.y = -this.height - 32;
+		this.text.anchor.x = this.text.anchor.y = 0.5;
 		this.x = Math.floor(this.p.x);
 		this.y = Math.floor(this.p.y);
-		this.addChild(this.text1);
-		this.addChild(this.text2);
+		this.addChild(this.text);
 		this.saying = '';
 	}
 
@@ -61,7 +59,7 @@ export class Character extends Container {
 
 	updateTransform() {
 		super.updateTransform();
-		this.text1.text = this.text2.text = this.saying;
+		this.text.text = this.saying;
 		const curTime = game.app.ticker.lastTime;
 		this.x = Math.floor(this.p.x);
 		this.y = Math.floor(this.p.y);

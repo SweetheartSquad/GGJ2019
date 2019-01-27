@@ -3,7 +3,7 @@ import Mouse from './input-mouse';
 import keys from './input-keys';
 import { Sprite } from 'pixi.js/lib/core';
 import MenuScene from './MenuScene';
-import PlayScene from './PlayScene'
+import Scene_1_outside from './Scene_1_outside'
 import game, { resources } from './Game';
 import { clamp } from './utils';
 import Player from './Player';
@@ -73,9 +73,12 @@ export function init() {
 	});
 	mouse = new Mouse(game.app.view, false);
 
-	player = new Player();
+	player = new Player({
+		x: 12,
+		y: 144,
+	});
 
-	setScene(new PlayScene());
+	setScene(new Scene_1_outside(), 'Day 1');
 
 	// start main loop
 	game.app.ticker.add(update);
