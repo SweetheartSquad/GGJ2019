@@ -9,9 +9,10 @@ const font = {
 	fontSize: 36,
 	fill: 0x000000,
 	stroke: 0xFFFFFF,
-	strokeThickness: 8,
+	strokeThickness: 6,
 	align: 'center',
-	antiAliased: false
+	antiAliased: false,
+	lineHeight: 32,
 };
 
 export class Character extends Container {

@@ -9,8 +9,8 @@ export default class extends BoatScene {
 			day: false,
 			npcs: [{
 				name: 'editor',
-				x: 0,
-				y: 150,
+				x: -100,
+				y: 300,
 				lines: [
           'You know, my dad and I had a huge fight.',
           'It was a long time ago, but…',
@@ -27,7 +27,7 @@ export default class extends BoatScene {
 				],
 			}, {
 				name: 'dame',
-				x: 200,
+				x: 250,
 				y: 150,
 				lines: [
           'The sea. I missed her.',

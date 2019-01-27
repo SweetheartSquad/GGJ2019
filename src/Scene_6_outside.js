@@ -28,6 +28,6 @@ export default class extends BoatScene {
 			}],
 			interact: [toInterior(Scene_6_inside)],
 		});
-		this.setRaining(true);
+		this.setRaining(false);
 	}
 }
