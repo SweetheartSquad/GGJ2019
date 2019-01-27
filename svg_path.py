@@ -21,6 +21,6 @@ if path:
     
     print("points: [")
     for point in points: 
-        print("    new Point(" + str(point["x"]) + ", " + str(point["y"]) + "),")
+        print("    new Point(" + str(round(point["x"], 2)) + ", " + str(round(point["y"], 2)) + "),")
     print("]")
                 
