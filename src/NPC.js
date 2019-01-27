@@ -1,7 +1,7 @@
 import Character from "./Character";
 
 export default class NPC extends Character {
-	constructor({pitch = 1, lines = [], label = "", ...options}) {
+	constructor({pitch = 1, lines = [], label, ...options}) {
 		super(options);
 		this.lines = lines.map(line => {
 			const words = line.split(' ');
