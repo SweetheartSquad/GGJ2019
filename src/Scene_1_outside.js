@@ -8,7 +8,7 @@ export default class extends BoatScene {
 		super({
 			npcs: [{
 				name: 'scout',
-				x: 0,
+				x: -100,
 				y: 150,
 				lines: ['Everybody inside!', 'No point getting wet out here.', 'Get inside with the others.'],
 			}, {
@@ -19,7 +19,7 @@ export default class extends BoatScene {
 			}, {
 				name: 'oldGuy',
 				x: 300,
-				y: 150,
+				y: 250,
 				lines: ['I can barely see anything...', 'Where are we?', 'It\'s so cold...'],
 			}],
 			interact: [toInterior(Scene_1_inside)],

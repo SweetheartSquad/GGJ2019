@@ -8,7 +8,7 @@ export default class extends InteriorScene {
 		super({
 			npcs: [{
 				name: 'oldGuy',
-				x: 50,
+				x: -50,
 				y: 250,
 				lines: [
                     'We are being tested...',

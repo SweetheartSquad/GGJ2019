@@ -18,7 +18,7 @@ export default class extends BoatScene {
 				],
 			}, {
 				name: 'whizkid',
-				x: 200,
+				x: -200,
 				y: 150,
 				lines: [
 					'I think we\'re going North!',

@@ -19,7 +19,7 @@ export default class extends InteriorScene {
             },
             {
 				name: 'dame',
-				x: 50,
+				x: -100,
 				y: 250,
 				lines: [
                     'Would you like a sardine?',

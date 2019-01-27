@@ -8,7 +8,7 @@ export default class extends InteriorScene {
 		super({
 			npcs: [{
 				name: 'whizkid',
-				x: 250,
+				x: 2500,
 				y: 250,
 				lines: ['I don’t understand, why would he leave...',
 					'I don’t know, I sort of thought he could be my new dad.'				
@@ -16,7 +16,7 @@ export default class extends InteriorScene {
             },
             {
 				name: 'oldGuy',
-				x: 50,
+				x: -200,
 				y: 250,
 				lines: [
                     'He was not prepared for this journey.',

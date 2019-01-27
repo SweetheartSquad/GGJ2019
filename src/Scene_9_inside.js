@@ -8,7 +8,7 @@ export default class extends InteriorScene {
 		super({
 			npcs: [{
 					name: 'editor',
-					x: 250,
+					x: 0,
 					y: 250,
 					lines: ['I\'ve completely lost track of time.',
 					'It feels like we’ve been out here forever.',
@@ -17,7 +17,7 @@ export default class extends InteriorScene {
 					],
 				},{
 				name: 'oldGuy',
-				x: 50,
+				x: 250,
 				y: 250,
 				lines: [
 					'When this journey ends...',
