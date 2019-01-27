@@ -47,8 +47,8 @@ export default class PlayScene extends Container {
 		player = new Character({
 			name: 'fella',
 			scale: 0.2,
-			x: 0,
-			y: 0,
+			x: 250,
+			y: 50,
 		});
 		player.camPoint = new PIXI.DisplayObject();
 		player.camPoint.visible = false;
@@ -94,14 +94,6 @@ export default class PlayScene extends Container {
 				new Point(-426.0, 112.5),
 				new Point(-426.0, 19.5),
 			]
-		},{
-			points: [
-				new Point(-14.0, -82.5),
-				new Point(-14.0, 6.5),
-				new Point(-14.0, 29.5),
-				new Point(100.0, 29.5),
-				new Point(-14.0, -82.5),
-			].reverse()
 		},{
 			points: [
 				new Point(165.333, -82.5),
