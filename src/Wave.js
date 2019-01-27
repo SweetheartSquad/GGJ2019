@@ -1,7 +1,7 @@
 import { Sprite } from "pixi.js/lib/core";
 import { resources } from './Game';
 import game from './Game';
-import { highSeas } from "./PlayScene";
+import { highSeas } from "./BoatScene";
 import { lerp } from "./utils";
 
 export default class Wave extends Sprite {
