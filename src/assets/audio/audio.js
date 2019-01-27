@@ -25,14 +25,16 @@ export const rain = {
     url: rainUrl,
     metadata:{
         loop: true,
-        autoplay: false
+        autoplay: true,
+        volume: 0,
     }
 };
 export const waves = {
     url: wavesUrl,
     metadata:{
         loop: true,
-        autoplay: false
+        autoplay: true,
+        volume: 0,
     }
 }
 // export const test = {};

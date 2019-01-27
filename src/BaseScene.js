@@ -62,8 +62,8 @@ export default class BaseScene extends Container {
 
 		this.updateCam();
 
-		// TODO: comment this out
-		this.debugDraw();
+		// uncomment this to see bounds
+		// this.debugDraw();
 	}
 
 	updateCam() {
