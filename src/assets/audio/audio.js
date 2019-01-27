@@ -1,6 +1,7 @@
 // import bgmurl from './Song2_RadioEffect.ogg';
 
 import rainUrl from './rain.mp3';
+import wavesUrl from './waves.mp3';
 
 // export const bgm = {
 // 	url: bgmurl,
@@ -21,6 +22,13 @@ import rainUrl from './rain.mp3';
 export { default as thunder } from './thunder.mp3';
 export const rain = {
     url: rainUrl,
+    metadata:{
+        loop: true,
+        autoplay: false
+    }
+};
+export const waves = {
+    url: wavesUrl,
     metadata:{
         loop: true,
         autoplay: false

@@ -69,7 +69,7 @@ export default class BoatScene extends BaseScene {
 		console.log(resources.rain);
 
 		resources.rain.data.play();
-
+		resources.waves.data.play();
 
 		this.screenFilter = new CustomFilter(resources.frag.data);
 		this.screenFilter.uniforms.whiteout = 0;
@@ -160,6 +160,8 @@ export default class BoatScene extends BaseScene {
 		super.destroy();
 		clearTimeout(this.lightningTimer);
 		clearTimeout(this.thunderTimer);
-		resources.rain.stop();
+		resources.rain.data.stop();
+		resources.waves.data.stop();
+		resources.thunder.data.stop();	
 	}
 }
