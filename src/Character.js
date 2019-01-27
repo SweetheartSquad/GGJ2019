@@ -6,11 +6,11 @@ let offset = 0;
 
 const font = {
 	fontFamily: 'font',
-	fontSize: 52,
+	fontSize: 36,
 	fill: 0x000000,
 	stroke: 0xFFFFFF,
-	strokeThickness: 12,
-	align: 'left',
+	strokeThickness: 8,
+	align: 'center',
 	antiAliased: false
 };
 
