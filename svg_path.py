@@ -11,14 +11,15 @@ if path:
         try:
             fval = float(val)
             if current["x"] is None:
-                current["x"] = float(val) - 650
+                current["x"] = float(val) - 550
             else:
-                current["y"] = float(val) - 337.5
+                current["y"] = float(val) - 220.5
                 points.append(current)
                 current = {"x":None, "y":None}
         except:
             pass
     
+    points.pop()
     print("points: [")
     for point in points: 
         print("    new Point(" + str(round(point["x"], 2)) + ", " + str(round(point["y"], 2)) + "),")
