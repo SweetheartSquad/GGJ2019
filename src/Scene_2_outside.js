@@ -1,4 +1,4 @@
-import Scene_1_inside from './Scene_1_inside';
+import Scene_2_inside from './Scene_2_inside';
 import BoatScene from './BoatScene';
 import { toInterior } from './helpers';
 
@@ -35,7 +35,7 @@ export default class extends BoatScene {
 				y: 150,
 				lines: ['How did we get here?', 'I wonder...'],
 			}],
-			interact: [toInterior(Scene_1_inside)],
+			interact: [toInterior(Scene_2_inside)],
 		});
 		this.setRaining(true);
 	}
