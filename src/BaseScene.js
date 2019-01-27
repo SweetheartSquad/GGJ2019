@@ -60,23 +60,23 @@ export default class BaseScene extends Container {
 			this.floor.sortDirty = true;
 		}
 
-		this.updateCam();
+		this.updateCam(0.1);
 
 		// uncomment this to see bounds
 		this.debugDraw();
 	}
 
-	updateCam() {
+	updateCam(delta = 1) {
 		// camera
-		const sTarget = 1 - (Math.abs(player.v.y) + Math.abs(player.v.x)) / 64;
+		const sTarget = 1.7 - (Math.abs(player.v.y) + Math.abs(player.v.x)) / 64;
 		this.s = lerp(this.s || sTarget, sTarget, 0.05);
 		this.scale.x = this.scale.y = lerp(this.scale.x, this.s, 0.2);
 
 		var p = player.camPoint.toGlobal(PIXI.zero);
-		this.pivot.x = Math.floor(lerp(this.x, p.x, 0.1));
-		this.pivot.y = Math.floor(lerp(this.y, player.p.y * this.scale.y, 0.1));
 		this.x = size.x / 2;
-		this.y = size.y / 4 * 1;
+		this.y = size.y * 1.2;
+		this.pivot.x = (lerp(this.x, p.x, 0.3));
+		this.pivot.y = (lerp(this.y, player.p.y * this.scale.y, 0.5));
 	}
 
 	debugDraw() {
