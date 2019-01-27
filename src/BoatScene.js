@@ -7,8 +7,7 @@ import game, { resources } from "./Game";
 import size from "./size";
 import { lerp } from "./utils";
 
-let turbulenceTarget = 0.3;
-let turbulence = turbulenceTarget;
+let turbulence;
 export let highSeas = 1;
 
 export default class BoatScene extends BaseScene {
@@ -68,6 +67,7 @@ export default class BoatScene extends BaseScene {
 			],
 			...options,
 		});
+		this.turbulenceTarget = 0.3;
 		resources.rain.data.fade(resources.rain.data.volume(),0,1000);
 		this.raining = false;
 
@@ -107,8 +107,7 @@ export default class BoatScene extends BaseScene {
 	update() {
 		super.update();
 		const curTime = game.app.ticker.lastTime;
-		turbulenceTarget = window.turbulence || turbulenceTarget;
-		turbulence = lerp(turbulence, turbulenceTarget, 0.1);
+		turbulence = lerp(turbulence || this.turbulenceTarget, this.turbulenceTarget, 0.1);
 		highSeas = lerp(0.3, 4, turbulence);
 		this.screenFilter.uniforms.curTime = curTime;
 		this.screenFilter.uniforms.rain = turbulence;
@@ -124,6 +123,10 @@ export default class BoatScene extends BaseScene {
 		var waveSet = new WaveSet(x, y, amplitude);
 		this.waveSets.push(waveSet);
 		this.addChild(waveSet);
+	}
+
+	setTurbulence(turbulence) {
+		this.turbulenceTarget = turbulence;
 	}
 
 	lightningStrike(){
