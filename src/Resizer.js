@@ -67,8 +67,6 @@ export default class Resizer {
 		this.baseWidth = baseWidth;
 		this.baseHeight = baseHeight;
 
-		this.element.style.minWidth = `${baseWidth}px`;
-		this.element.style.minHeight = `${baseHeight}px`;
 		this.ratio = this.baseWidth / this.baseHeight;
 
 		this.scaleMode = scaleMode;

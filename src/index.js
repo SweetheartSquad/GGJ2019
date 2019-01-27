@@ -13,7 +13,7 @@ document.body.addEventListener('mousedown', function() {
 // .5 = preload and asset load equally visually affect loader progress
 const preloadWeight = .75;
 
-const resizer = new Resizer(size.x, size.y, Resizer.SCALE_MODES.MULTIPLES);
+const resizer = new Resizer(size.x, size.y, Resizer.SCALE_MODES.FIT);
 document.body.appendChild(resizer.element);
 
 const playEl = document.createElement('button');
