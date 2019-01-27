@@ -7,7 +7,7 @@ export default class extends InteriorScene {
 		super({
 			npcs: [{
 				name: 'father',
-				x: 130,
+				x: 250,
 				y: 250,
 				lines: ['I don\'t understand any of this.',
                     'Or who any of you people are.',
@@ -18,7 +18,7 @@ export default class extends InteriorScene {
             },
             {
 				name: 'dame',
-				x: 400,
+				x: 50,
 				y: 250,
 				lines: [
                     'Would you like a sardine?',
