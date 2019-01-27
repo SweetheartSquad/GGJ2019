@@ -1,14 +1,15 @@
 import Bounds from "./Bounds";
 import V from './vector';
 import { playerSpeedX, playerSpeedY } from "./PlayScene";
+import BoundsMesh from "./BoundsMesh";
 
-export default class NavMesh {
+export default class NavMesh extends BoundsMesh{
 	constructor(areas) {
-		this.areas = areas.map(({
+		super(areas.map(({
 			points,
 		}) => ({
 			bounds: new Bounds(points),
-		}));
+		})));
 		this.current = 0;
 	}
 
@@ -54,12 +55,8 @@ export default class NavMesh {
 	}
 
 	debugDraw(g) {
-		g.beginFill(0,0);
-		this.areas.forEach(({bounds}, idx) => {
-			g.lineStyle(3, 200000 + (idx === this.current ? 100000 : 0));
-			g.drawPolygon(bounds);
-		});
-		g.endFill();
+		
+		super.debugDraw(g);
 
 		if(this.intersectionPoint){
 			g.beginFill(0xff0000, 1);

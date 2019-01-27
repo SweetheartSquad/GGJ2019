@@ -7,6 +7,7 @@ import NavMesh from './NavMesh';
 import Character from './Character';
 import { Boat } from './Boat';
 import { lerp } from './utils';
+import InteractableMesh from './InteractableMesh';
 
 export const playerSpeedX = 1.1;
 export const playerSpeedY = 0.4;
@@ -50,6 +51,19 @@ let bounds = new NavMesh([{
 		new Point(500 - 400, 800 - 400),
 	]
 }]);
+
+
+let interactiveBounds = new InteractableMesh([{
+	points: [
+		new Point(140 - 400, 140 - 400),
+		new Point(240 - 400, 140 - 400),
+		new Point(240 - 400, 400 - 400),
+		new Point(140 - 400, 400 - 400),
+	], 
+	onEnter: ()=>{console.log("Enter")},
+	onExit: ()=>{console.log("Exit")}
+}]);
+
 
 let turbulenceInput = 0.3;
 export let turbulence = 1;
@@ -150,6 +164,8 @@ export default class PlayScene extends Container {
 		player.v.y += input.move.y * playerSpeedY;
 
 		bounds.update(player);
+		interactiveBounds.update(player);
+
 
 		player.p.x += player.v.x;
 		var oldy = player.p.y;
@@ -185,6 +201,7 @@ export default class PlayScene extends Container {
 		}
 
 		bounds.debugDraw(g);
+		interactiveBounds.debugDraw(g);
 
 		this.boat.rotation = ((Math.sin(curTime / 300) + Math.sin(curTime / 200)) * 0.5 * 0.01) * turbulence;
 		const waveY = 0.5 * (Math.sin(curTime / 300) + Math.sin(curTime / 400)) + Math.sin(curTime / 10) * 0.05 * Math.sin(curTime / 50);
@@ -192,7 +209,6 @@ export default class PlayScene extends Container {
 		this.boat.y = this.boat.bg.height / 2 + waveY * 4 * turbulence;
 		this.boat.x = this.boat.bg.width / 2 + waveX * 2 * turbulence;
 	}
-
 	addWaveSet(x, y, amplitude) {
 		var waveSet = new WaveSet(x, y, amplitude);
 		this.waveSets.push(waveSet);
