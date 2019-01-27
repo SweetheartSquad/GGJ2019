@@ -72,7 +72,7 @@ export default class BaseScene extends Container {
 		this.s = lerp(this.s || sTarget, sTarget, 0.05);
 		this.scale.x = this.scale.y = lerp(this.scale.x, this.s, 0.2);
 
-		var p = this.toLocal(PIXI.zero, player.camPoint);
+		var p = player.camPoint.toGlobal(PIXI.zero);
 		this.pivot.x = Math.floor(lerp(this.x, p.x, 0.1));
 		this.pivot.y = Math.floor(lerp(this.y, player.p.y * this.scale.y, 0.1));
 		this.x = size.x / 2;
