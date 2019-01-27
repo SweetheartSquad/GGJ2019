@@ -16,53 +16,57 @@ export default class BoatScene extends BaseScene {
 		const boat = new Boat();
 		super({
 			floor: boat,
-			nav: [{
+			nav: [
+				{
 				points: [
-					new Point(-650.0 + 100, 86.5 + 100),
-					new Point(253.804 + 100, 79.5 + 100),
-					new Point(347.0 + 100, 265.5 + 100),
-					new Point(-650.0 + 100, 265.5 + 100),
-					new Point(-650.0 + 100, 86.5 + 100),
+						new Point(-550.0, 217.5),
+						new Point(353.8, 206.5),
+						new Point(447.0, 382.5),
+						new Point(-550.0, 382.5),
+						new Point(-550.0, 217.5),
 				]
 			}, {
 				points: [
-					new Point(-426.0 + 100, 19.5 + 100),
-					new Point(103.551 + 100, 4.5 + 100),
-					new Point(158.0 + 100, 117.5 + 100),
-					new Point(-426.0 + 100, 112.5 + 100),
-					new Point(-426.0 + 100, 19.5 + 100),
+						new Point(-291.0, 142.83),
+						new Point(-287.15, 135.5),
+						new Point(-278.83, 131.83),
+						new Point(205.56, 121.5),
+						new Point(258.0, 234.5),
+						new Point(-291.0, 225.5),
+						new Point(-291.0, 142.83),
 				]
 			}, {
 				points: [
-					new Point(165.333 + 100, -82.5 + 100),
-					new Point(0.667 + 100, -82.5 + 100),
-					new Point(-5.0 + 100, -79.5 + 100),
-					new Point(-6.284 + 100, -72.612 + 100),
-					new Point(263.0 + 100, 272.5 + 100),
-					new Point(557.343 + 100, 266.275 + 100),
-					new Point(576.0 + 100, 260.5 + 100),
-					new Point(568.5 + 100, 243.909 + 100),
-					new Point(201.194 + 100, -67.095 + 100),
-					new Point(183.0 + 100, -78.5 + 100),
-					new Point(165.333 + 100, -82.5 + 100),
+						new Point(255.33, 44.5),
+						new Point(110.67, 44.5),
+						new Point(105.0, 47.5),
+						new Point(103.72, 54.39),
+						new Point(363.0, 369.5),
+						new Point(617.34, 373.27),
+						new Point(636.0, 367.5),
+						new Point(628.5, 350.91),
+						new Point(291.19, 59.9),
+						new Point(273.0, 48.5),
+						new Point(255.33, 44.5),
 				].reverse()
 			}, {
 				points: [
-					new Point(-202.667 + 100, -62.217 + 100),
-					new Point(-411.655 + 100, -57.702 + 100),
-					new Point(-419.0 + 100, -56.5 + 100),
-					new Point(-421.485 + 100, -49.066 + 100),
-					new Point(-425.469 + 100, 20.269 + 100),
-					new Point(-423.0 + 100, 27.5 + 100),
-					new Point(-416.994 + 100, 29.154 + 100),
-					new Point(-183.34 + 100, 20.167 + 100),
-					new Point(-171.0 + 100, 14.5 + 100),
-					new Point(-171.067 + 100, 1.873 + 100),
-					new Point(-186.923 + 100, -53.288 + 100),
-					new Point(-191.571 + 100, -61.5 + 100),
-					new Point(-202.667 + 100, -62.217 + 100),
+						new Point(-130.44, 68.5),
+						new Point(-283.6, 69.29),
+						new Point(-289.13, 70.3),
+						new Point(-291.0, 76.53),
+						new Point(-289.87, 138.7),
+						new Point(-288.01, 144.77),
+						new Point(-283.49, 146.15),
+						new Point(-109.29, 140.61),
+						new Point(-100.0, 135.86),
+						new Point(-100.05, 125.27),
+						new Point(-118.59, 75.99),
+						new Point(-122.09, 69.1),
+						new Point(-130.44, 68.5),
 				].reverse()
-			}],
+				}
+			],
 			...options,
 		});
 		resources.rain.data.fade(resources.rain.data.volume(),0,1000);
