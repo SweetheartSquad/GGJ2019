@@ -89,17 +89,27 @@ export default class PlayScene extends Container {
 
 		player = new Character({
 			name: 'fella',
-			scale: 0.25,
+			scale: 0.3,
+			x: bounds.getCenter().x,
+			y: bounds.getCenter().y,
 		});
 		player.camPoint = new PIXI.DisplayObject();
 		player.camPoint.visible = false;
-		player.con.addChild(player.camPoint);
+		player.addChild(player.camPoint);
 		player.p.x = bounds.getCenter().x;
 		player.p.y = bounds.getCenter().y;
 		// characters.characters.push(player);
 
 		this.boat.addChild(g);
-		this.boat.addChild(player.con);
+		this.boat.addChild(player);
+
+		const npc = new Character({
+			name: 'fella',
+			scale: 0.3,
+			x: bounds.getCenter().x-20,
+			y: bounds.getCenter().y,
+		});
+		this.boat.addChild(npc);
 
 		const font = {
 			fontFamily: 'Comic Sans MS',
@@ -115,7 +125,7 @@ export default class PlayScene extends Container {
 		text.y = -200;
 		text.anchor.x = 0.5;
 		text.anchor.y = 0.5;
-		player.con.addChild(text);
+		player.addChild(text);
 	}
 
 	destroy() {
@@ -171,10 +181,9 @@ export default class PlayScene extends Container {
 
 		if (Math.abs(player.v.y) > 0.01) {
 			this.boat.sortDirty = true;
-			player.con.zIndex = player.p.y;
+			player.zIndex = player.p.y;
 		}
 
-		player.update();
 		bounds.debugDraw(g);
 
 		this.boat.rotation = ((Math.sin(curTime / 300) + Math.sin(curTime / 200)) * 0.5 * 0.01) * turbulence;
