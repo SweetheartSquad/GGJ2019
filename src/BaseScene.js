@@ -7,8 +7,7 @@ import { lerp } from "./utils";
 import size from "./size";
 import NPC from "./NPC";
 
-let g = new Graphics();
-g.zIndex = 100000;
+let debug;
 
 export default class BaseScene extends Container {
 	constructor({
@@ -48,10 +47,8 @@ export default class BaseScene extends Container {
 				})
 			));
 
-		floor.addChild(g);
 		floor.addChild(player);
 		this.addChild(floor);
-
 		this.updateCam();
 	}
 
@@ -64,6 +61,9 @@ export default class BaseScene extends Container {
 		}
 
 		this.updateCam();
+
+		// TODO: comment this out
+		this.debugDraw();
 	}
 
 	updateCam(){
@@ -80,8 +80,18 @@ export default class BaseScene extends Container {
 	}
 
 	debugDraw() {
-		g.clear();
-		this.bounds.debugDraw(g);
-		this.interactiveBounds.debugDraw(g);
+		if (!debug) {
+			debug = new Graphics()
+			debug.zIndex = 100000;
+			this.floor.addChild(debug);
+		}
+		debug.clear();
+		this.bounds.debugDraw(debug);
+		this.interactiveBounds.debugDraw(debug);
+	}
+
+	destroy() {
+		super.destroy();
+		debug = null;
 	}
 }

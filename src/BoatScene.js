@@ -107,8 +107,6 @@ export default class BoatScene extends BaseScene {
 		const waveX = Math.sin(curTime / 500) + Math.sin(curTime / 300) * 0.05 * Math.sin(curTime / 50);
 		this.floor.y = this.floor.bg.height / 2 + waveY * 4 * highSeas;
 		this.floor.x = this.floor.bg.width / 2 + waveX * 2 * highSeas;
-
-		this.debugDraw();
 	}
 
 	addWaveSet(x, y, amplitude) {
