@@ -3,7 +3,6 @@ import size from "./size";
 import Wave from "./Wave";
 
 export default class WaveSet extends Container{
-
     constructor(x, y, amplitude){
         super();
         
@@ -13,23 +12,21 @@ export default class WaveSet extends Container{
         this.y = y;
         this.waves = [];
         this.amplitude = amplitude;
-        this.lastWaveSwap = 0;
-
+        this.lastWave = 0;
         this.initWaves();
     }
-
-    destroy() {
-		Container.prototype.destroy.call(this);
-    }
     
-    update(){
-        if(this.waves[this.waves.length - 1].x > size.x){    
-            var wave = this.waves.pop();
-            wave.offsetX = this.waves[0].offsetX - wave.width / 2;
-            this.waves.unshift(wave);
+    updateTransform(){
+        super.updateTransform();
+        const wave = this.waves[this.lastWave];
+        if(wave.x > size.x){    
+            wave.offsetX = this.waves[(this.lastWave+1)%this.waves.length].offsetX - wave.width / 2;
+            --this.lastWave;
+            if (this.lastWave < 0) {
+                this.lastWave = this.waves.length - 1;
+            };
         }
         this.waves.forEach((wave) => {
-            wave.update();
             wave.offsetX += 1;
         });
     }
@@ -44,5 +41,6 @@ export default class WaveSet extends Container{
             this.addChild(wave);
             this.waves.push(wave);
         }
+        this.lastWave = this.waves.length-1;
     }
 }
