@@ -1,31 +1,28 @@
 import BoundsMesh from "./BoundsMesh";
 import InteractiveBounds from "./InteractiveBounds";
+import { getInput } from "./main";
 
-export default class InteractableMesh extends BoundsMesh{
-    constructor(areas) {
+export default class InteractableMesh extends BoundsMesh {
+	constructor(areas) {
 		super(areas.map(({
-            points,
-            onEnter,
-            onExit,
-            onInteract
-		}) => ({
-			bounds: new InteractiveBounds(points,  onInteract, onEnter, onExit),
-		})));
+			points,
+			onEnter,
+			onExit,
+			onInteract
+		}) => new InteractiveBounds(points, onInteract, onEnter, onExit)));
 		this.boundsDebugColor = 0x00ff00;
-    }
-    
-    update(player){
-        this.areas.forEach((area) => {
-           area.bounds.update(player); 
-        });
-    }
+	}
 
-    debugDraw(g) {
-		super.debugDraw(g);
-        g.beginFill(0x00ff00, 0.2);
-		this.areas.forEach(({bounds}, idx) => {
-			g.drawPolygon(bounds);
+	update(player) {
+		this.current = undefined;
+		this.areas.forEach((area, idx) => {
+			area.update(player);
+			if (area.playerInBounds && area.onInteract) {
+				this.current = idx;
+			}
 		});
-        g.endFill();
-    }
+		if (this.current !== undefined && getInput().interact) {
+			this.areas[this.current].onInteract();
+		}
+	}
 }

@@ -1,19 +1,19 @@
 import Bounds from './Bounds';
 
-export default class BoundsMesh{
+export default class BoundsMesh {
+	constructor(areas) {
+		this.boundsDebugColor = 0;
+		this.areas = areas;
+		this.current = undefined;
+	}
 
-    constructor(areas){
-        this.boundsDebugColor = 0;
-        this.areas = areas;
-    }
-   
-    debugDraw(g) {
-		g.beginFill(this.boundsDebugColor,0);
-		this.areas.forEach(({bounds}, idx) => {
+	debugDraw(g) {
+		this.areas.forEach((area, idx) => {
+			g.beginFill(this.boundsDebugColor, (idx === this.current ? 0.5 : 0.25));
 			g.lineStyle(3, 200000 + (idx === this.current ? 100000 : 0));
-			g.drawPolygon(bounds);
+			g.drawPolygon(area);
+			g.endFill();
 		});
-        g.endFill();
-    }
+	}
 
 }
