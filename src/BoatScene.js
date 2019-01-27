@@ -65,6 +65,12 @@ export default class BoatScene extends BaseScene {
 			}],
 			...options,
 		});
+
+		console.log(resources.rain);
+
+		resources.rain.data.play();
+
+
 		this.screenFilter = new CustomFilter(resources.frag.data);
 		this.screenFilter.uniforms.whiteout = 0;
 		this.screenFilter.uniforms.raining = 1;
@@ -118,6 +124,9 @@ export default class BoatScene extends BaseScene {
 	}
 
 	lightningStrike(){
+		this.thunderTimer = setTimeout(() => {
+			resources.thunder.data.play();
+		}, Math.random() * 1000);
 		this.screenFilter.uniforms.invert = 1.0;
 		setTimeout(() => {
 			this.screenFilter.uniforms.invert = 0.5;
@@ -150,5 +159,7 @@ export default class BoatScene extends BaseScene {
 	destroy(){
 		super.destroy();
 		clearTimeout(this.lightningTimer);
+		clearTimeout(this.thunderTimer);
+		resources.rain.stop();
 	}
 }

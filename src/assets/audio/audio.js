@@ -1,5 +1,7 @@
 // import bgmurl from './Song2_RadioEffect.ogg';
 
+import rainUrl from './rain.mp3';
+
 // export const bgm = {
 // 	url: bgmurl,
 // 	metadata: {
@@ -16,5 +18,12 @@
 // export { default as temp } from './temp.wav';
 // export { default as pull_cord } from './horn.mp3';
 // export { default as not_yet } from './NOT YET.mp3';
-export { default as flash } from './flash.wav';
+export { default as thunder } from './thunder.mp3';
+export const rain = {
+    url: rainUrl,
+    metadata:{
+        loop: true,
+        autoplay: false
+    }
+}
 // export const test = {};
