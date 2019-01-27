@@ -1,9 +1,9 @@
 {
-	"name": "stone-cold-sexy-html5",
+	"name": "ggj2019",
 	"version": "1.0.0",
-	"description": "Stone Cold Sexy",
+	"description": "Homeward Bound",
 	"main": "./src/index.js",
-	"author": "Sean S. LeBlanc",
+	"author": "SweetHeart Squad",
 	"scripts": {
 		"serve": "hs --cors -c-1 -p 80",
 		"debug": "webpack --config webpack.config.dev.js --mode development",
