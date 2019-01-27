@@ -91,6 +91,8 @@ export default class BoatScene extends BaseScene {
 		this.addWaveSet(128, size.y - 180, 20);
 		this.addWaveSet(64, size.y - 142, 30);
 		this.addWaveSet(0, size.y - 114, 10);
+
+		this.queueLightning();
 	}
 
 	update() {
@@ -113,5 +115,40 @@ export default class BoatScene extends BaseScene {
 		var waveSet = new WaveSet(x, y, amplitude);
 		this.waveSets.push(waveSet);
 		this.addChild(waveSet);
+	}
+
+	lightningStrike(){
+		this.screenFilter.uniforms.invert = 1.0;
+		setTimeout(() => {
+			this.screenFilter.uniforms.invert = 0.5;
+			setTimeout(() => {
+				this.screenFilter.uniforms.invert = 0.25;
+				setTimeout(() => {
+					this.screenFilter.uniforms.invert = 0.0;
+					this.screenFilter.uniforms.whiteout = 1.0;
+					setTimeout(() => {
+						this.screenFilter.uniforms.whiteout = 0.5;
+						setTimeout(() => {
+							this.screenFilter.uniforms.whiteout = 0.25;
+							setTimeout(() => {
+								this.screenFilter.uniforms.whiteout = 0.0;
+							},60);
+						},60);
+					},60);
+				},60);
+			},60);
+		},60);
+	}
+
+	queueLightning(){
+		this.lightningTimer = setTimeout(() => {
+			this.lightningStrike();
+			this.queueLightning();
+		}, Math.random()*120000+3000);
+	}
+
+	destroy(){
+		super.destroy();
+		clearTimeout(this.lightningTimer);
 	}
 }

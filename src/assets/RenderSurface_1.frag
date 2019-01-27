@@ -6,6 +6,7 @@ uniform sampler2D uSampler;
 uniform float rain;
 uniform float raining;
 uniform float whiteout;
+uniform float invert;
 uniform float curTime;
 
 float rand(vec2 co){
@@ -33,7 +34,8 @@ void main(void) {
 	uv.y += rainAmount*rainStep*0.5*step(0.5,raining);
 	uv.x += rainAmount*rainStep*0.5*wind*step(0.5,raining);
 	vec3 col = texture2D(uSampler, uv).rgb;
-    col += vec3(whiteout);
+    col = mix(col, vec3(1.0), whiteout);
+    col = mix(col, 1.0 - col, invert);
 
 	// combined
 	float mixAmount = 1.0;
