@@ -6,9 +6,11 @@ import MenuScene from './MenuScene';
 import PlayScene from './PlayScene'
 import game, { resources } from './Game';
 import { clamp } from './utils';
+import Player from './Player';
 
 let mouse;
 let activeScene;
+export let player;
 
 export function setScene(scene) {
 	activeScene = scene;
@@ -57,6 +59,8 @@ export function init() {
 		capture: [keys.LEFT, keys.RIGHT, keys.UP, keys.DOWN, keys.SPACE, keys.ENTER, keys.BACKSPACE, keys.ESCAPE, keys.W, keys.A, keys.S, keys.D, keys.P, keys.M]
 	});
 	mouse = new Mouse(game.app.view, false);
+
+	player = new Player();
 
 	setScene(new PlayScene());
 

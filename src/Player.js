@@ -18,11 +18,12 @@ export default class Player extends Character {
 		this.camPoint = new DisplayObject();
 		this.camPoint.visible = false;
 		this.addChild(this.camPoint);
+		window.player = this;
 	}
 
 	updateTransform() {
-		var curTime = game.app.ticker.lastTime;
 		super.updateTransform();
+		var curTime = game.app.ticker.lastTime;
 		const input = getInput();
 		// update player
 		this.v.x *= 0.8;

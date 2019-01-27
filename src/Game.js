@@ -3,7 +3,6 @@ import HowlerMiddleware from 'howler-pixi-loader-middleware';
 import assets from './assets';
 import { init } from './main';
 import size from './size';
-import Player from './Player';
 
 // PIXI configuration stuff
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
@@ -66,4 +65,3 @@ class Game {
 const game = new Game();
 export default game;
 export const resources = game.app.loader.resources;
-export const player = new Player();

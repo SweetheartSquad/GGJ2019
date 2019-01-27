@@ -59,8 +59,8 @@ export class Character extends Container {
 		return .8 + (this.p.y + 250) / 300;
 	}
 
-	updateTransform(...args) {
-		super.updateTransform(...args);
+	updateTransform() {
+		super.updateTransform();
 		this.text1.text = this.text2.text = this.saying;
 		const curTime = game.app.ticker.lastTime;
 		this.x = Math.floor(this.p.x);

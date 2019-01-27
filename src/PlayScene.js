@@ -1,5 +1,5 @@
-import { getInput } from './main';
-import game, { resources, player } from './Game';
+import { getInput, player } from './main';
+import game, { resources } from './Game';
 import { Container, Sprite, Graphics, Point } from 'pixi.js/lib/core';
 import size from './size';
 import WaveSet from './WaveSet';
