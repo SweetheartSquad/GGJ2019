@@ -1,6 +1,7 @@
 import InteriorScene from './InteriorScene';
 import { toExterior, toNextDay } from './helpers';
 import Scene_2_outside from './Scene_2_outside';
+import Scene_3_outside from './Scene_3_outside';
 
 export default class extends InteriorScene {
 	constructor() {
@@ -27,7 +28,7 @@ export default class extends InteriorScene {
 			}],
 			interact: [
 				toExterior(Scene_2_outside),
-				toNextDay(Scene_2_outside, 'Day 2')
+				toNextDay(Scene_3_outside, 'Day 4')
 			],
 		});
 	}
