@@ -66,7 +66,7 @@ export default class BaseScene extends Container {
 		this.debugDraw();
 	}
 
-	updateCam(){
+	updateCam() {
 		// camera
 		const sTarget = 1 - (Math.abs(player.v.y) + Math.abs(player.v.x)) / 64;
 		this.s = lerp(this.s || sTarget, sTarget, 0.05);

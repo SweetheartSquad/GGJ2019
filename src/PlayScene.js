@@ -31,7 +31,7 @@ export default class PlayScene extends BoatScene {
 				],
 				onEnter: () => {
 					player.p.y += 20;
-					setTimeout(()=>setScene(new PlayScene2()));
+					setTimeout(() => setScene(new PlayScene2()));
 				},
 			}],
 		});

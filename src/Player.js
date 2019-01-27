@@ -60,7 +60,7 @@ export default class Player extends Character {
 			this.spr.anchor.y = 1;
 		}
 		if (this.camPoint) {
-			this.camPoint.position.x = this.v.x * size.x * 0.01;
+			this.camPoint.x = this.v.x * size.x * 0.01;
 		}
 	}
 }
