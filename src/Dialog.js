@@ -13,12 +13,18 @@ export function createDialog(npc, {
 			npc.saying = '';
 		},
 		onInteract: () => {
-			npc.saying = lines[i];
+			const saying = lines[i];
+			if(npc.saying !== saying) {
+				npc.saying = saying;
+				npc.s += 0.2;
+				const id = resources.talk.data.play();
+				resources.talk.data.rate(npc.pitch, id);
+			} else {
+				npc.saying = '';
+			}
 			if (i < lines.length - 1) {
 				++i;
 			}
-			var id = resources.talk.data.play();
-			resources.talk.data.rate(npc.pitch, id);
 		}
 	}
 }

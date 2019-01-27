@@ -46,7 +46,7 @@ export class Character extends Container {
 
 		this.text1 = new Text("", font);
 		this.text2 = new Text("", { ...font, strokeThickness: 0 });
-		this.text2.y = this.text1.y = -this.height;
+		this.text2.y = this.text1.y = -this.height - 52;
 		this.text2.anchor.x = this.text2.anchor.y = this.text1.anchor.x = this.text1.anchor.y = 0.5;
 		this.x = Math.floor(this.p.x);
 		this.y = Math.floor(this.p.y);
