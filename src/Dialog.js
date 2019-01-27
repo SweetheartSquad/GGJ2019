@@ -5,13 +5,13 @@ export function createDialog(npc, {
 	let i = 0;
 	return {
 		onEnter: () => {
-			npc.text.text = label;
+			npc.saying = label;
 		},
 		onExit: () => {
-			npc.text.text = '';
+			npc.saying = '';
 		},
 		onInteract: () => {
-			npc.text.text = lines[i];
+			npc.saying = lines[i];
 			if (i < lines.length - 1) {
 				++i;
 			}

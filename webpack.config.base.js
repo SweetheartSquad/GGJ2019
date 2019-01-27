@@ -46,6 +46,14 @@ module.exports = {
 					limit: Infinity // bytes
 				}
 			}
+		}, {
+			test: /.otf$/, // assets, excluding bitmap fonts
+			use: {
+				loader: 'file-loader',
+				options: {
+					outputPath: 'assets/',
+				}
+			}
 		}]
 	},
 	entry: {

@@ -82,3 +82,8 @@ canvas {
 	/* pixelated */
 	image-rendering: pixelated;
 }
+
+@font-face {
+	font-family: "font";
+	src: url("./font/BethEllen.otf") format("opentype");
+}

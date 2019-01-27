@@ -1,16 +1,15 @@
 import game, { resources } from './Game';
 import { lerp } from './utils';
-import { Container } from 'pixi.js/lib/core';
+import { Container, Text, Sprite } from 'pixi.js/lib/core';
 
 let offset = 0;
 
 const font = {
-	fontFamily: 'Comic Sans MS',
-	fontWeight: 'bold',
-	fontSize: 32,
+	fontFamily: 'font',
+	fontSize: 52,
 	fill: 0x000000,
 	stroke: 0xFFFFFF,
-	strokeThickness: 3,
+	strokeThickness: 12,
 	align: 'left',
 	antiAliased: false
 };
@@ -35,11 +34,11 @@ export class Character extends Container {
 		this.flipped = false;
 
 		console.log(resources);
-		this.shadow = new PIXI.Sprite(resources['shadows'].texture);
+		this.shadow = new Sprite(resources['shadows'].texture);
 		// this.shadow.filters = [sprite_filter];
 		this.shadow.anchor.x = 0.5;
 		this.shadow.anchor.y = .75;
-		this.spr = new PIXI.Sprite(resources[name].texture);
+		this.spr = new Sprite(resources[name].texture);
 		// this.spr.filters = [sprite_filter];
 		this.spr.anchor.x = 0.5;
 		this.spr.anchor.y = 1.0;
@@ -48,13 +47,15 @@ export class Character extends Container {
 		this.zIndex = this.p.y;
 		this.spr.scale.x = this.spr.scale.y = this.getScale() * this.rawScale;
 
-		this.text = new PIXI.Text("", font);
-		this.text.y = -this.height;
-		this.text.anchor.x = 0.5;
-		this.text.anchor.y = 0.5;
-		this.addChild(this.text);
+		this.text1 = new Text("", font);
+		this.text2 = new Text("", { ...font, strokeThickness: 0 });
+		this.text2.y = this.text1.y = -this.height;
+		this.text2.anchor.x = this.text2.anchor.y = this.text1.anchor.x = this.text1.anchor.y = 0.5;
 		this.x = Math.floor(this.p.x);
 		this.y = Math.floor(this.p.y);
+		this.addChild(this.text1);
+		this.addChild(this.text2);
+		this.saying = '';
 	}
 
 	getScale() {
@@ -63,6 +64,7 @@ export class Character extends Container {
 
 	updateTransform(...args) {
 		super.updateTransform(...args);
+		this.text1.text = this.text2.text = this.saying;
 		const curTime = game.app.ticker.lastTime;
 		this.x = Math.floor(this.p.x);
 		this.y = Math.floor(this.p.y);
