@@ -1,3 +1,4 @@
+export { default as dame } from './dame.png';
 export { default as fella } from './fella.png';
 export { default as fella_run_1 } from './fella1.png';
 export { default as fella_run_2 } from './fella2.png';
