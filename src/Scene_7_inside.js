@@ -13,7 +13,7 @@ export default class PlayScene3 extends InteriorScene {
 				lines: ['I have enjoyed getting to know you all.', 'We make a good team.'],
 			}, {
 				name: 'whizkid',
-				x: 130,
+				x: 0,
 				y: 250,
 				lines: ['I miss my mom and dad.', 'I just wanna go home.'],
 			}],
