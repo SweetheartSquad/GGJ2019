@@ -16,7 +16,7 @@ export function setScene(scene) {
 	if (activeScene) {
 		activeScene.destroy();
 	}
-	activeScene = scene;
+	window.scene = activeScene = scene;
 	game.app.stage.addChild(activeScene);
 }
 
