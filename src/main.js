@@ -19,13 +19,13 @@ export function setScene(scene, text, time = 2500) {
 	}
 	if (text) {
 		window.scene = activeScene = new TextScene(text);
-		game.app.stage.addChild(activeScene);
+		game.app.stage.addChildAt(activeScene, 0);
 		setTimeout(() => {
 			setScene(scene);
 		}, time);
 	} else {
 		window.scene = activeScene = scene;
-		game.app.stage.addChild(activeScene);
+		game.app.stage.addChildAt(activeScene, 0);
 	}
 }
 
