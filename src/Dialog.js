@@ -28,7 +28,7 @@ export function createDialog(npc, {
 				npc.saying = saying;
 				npc.s += 0.2;
 				const id = resources.talk.data.play();
-				resources.talk.data.rate(pitches[npc.name], id);
+				resources.talk.data.rate(pitches[npc.name] || 1, id);
 			} else {
 				npc.saying = '';
 			}

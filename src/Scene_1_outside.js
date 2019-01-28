@@ -1,6 +1,6 @@
 import Scene_1_inside from './Scene_1_inside';
 import BoatScene from './BoatScene';
-import { toInterior } from './helpers';
+import { toInterior, toObservation } from './helpers';
 
 
 export default class extends BoatScene {
@@ -23,7 +23,10 @@ export default class extends BoatScene {
 				y: 250,
 				lines: ['I can barely see anything...', 'Where are we?', 'It\'s so cold...'],
 			}],
-			interact: [toInterior(Scene_1_inside)],
+			interact: [
+				toInterior(Scene_1_inside),
+				toObservation()
+			],
 		});
 		this.setRaining(true);
 	}

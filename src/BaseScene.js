@@ -17,6 +17,7 @@ export default class BaseScene extends Container {
 		interact = [],
 	}) {
 		super();
+		this.zoom = 1;
 		this.floor = floor;
 		const npcs = npcDefs.map(npcDef => new NPC(npcDef));
 		npcs.forEach(npc => floor.addChild(npc));
@@ -68,15 +69,15 @@ export default class BaseScene extends Container {
 
 	updateCam(delta = 1) {
 		// camera
-		const sTarget = 1.7 - (Math.abs(player.v.y) + Math.abs(player.v.x)) / 64;
+		const sTarget = (1.7 - (Math.abs(player.v.y) + Math.abs(player.v.x)) / 64) * this.zoom;
 		this.s = lerp(this.s || sTarget, sTarget, 0.05);
 		this.scale.x = this.scale.y = lerp(this.scale.x, this.s, 0.2);
 
 		var p = player.camPoint.toGlobal(PIXI.zero);
 		this.x = size.x / 2;
-		this.y = size.y * 1.2;
+		this.y = size.y * 0.5 * this.zoom;
 		this.pivot.x = (lerp(this.x, p.x, 0.3));
-		this.pivot.y = (lerp(this.y, player.p.y * this.scale.y, 0.5));
+		this.pivot.y = (lerp(this.y, player.p.y*1.2, 0.5));
 	}
 
 	debugDraw() {

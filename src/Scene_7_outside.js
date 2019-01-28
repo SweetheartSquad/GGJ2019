@@ -1,6 +1,6 @@
 import Scene_7_inside from './Scene_7_inside';
 import BoatScene from './BoatScene';
-import { toInterior } from './helpers';
+import { toInterior, toObservation } from './helpers';
 
 
 export default class extends BoatScene {
@@ -27,7 +27,10 @@ export default class extends BoatScene {
 					'We will be rewarded for our faith.'
 				],
 			}],
-			interact: [toInterior(Scene_7_inside)],
+			interact: [
+				toInterior(Scene_7_inside),
+				toObservation()
+			],
 		});
 		this.setTurbulence(0.1);
 	}

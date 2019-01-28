@@ -12,22 +12,22 @@ let turbulence;
 export let highSeas = 1;
 
 export default class BoatScene extends BaseScene {
-	constructor({
-		day = true,
-		...options
-	} = {}) {
+	constructor(opts = {}) {
+		const {
+			day = true,
+				...options
+		} = opts;
 		const boat = new Boat();
 		super({
 			floor: boat,
-			nav: [
-				{
+			nav: [{
 					points: [
 						new Point(-550.0, 217.5),
 						new Point(353.8, 206.5),
 						new Point(447.0, 382.5),
 						new Point(-550.0, 382.5),
 					]
-					},{
+				}, {
 					points: [
 						new Point(-291.0, 142.83),
 						new Point(-287.15, 135.5),
@@ -36,47 +36,55 @@ export default class BoatScene extends BaseScene {
 						new Point(258.0, 234.5),
 						new Point(-291.0, 225.5),
 					]
-					},{
+				}, {
 					points: [
-						new Point(255.33, 44.5),
-						new Point(110.67, 44.5),
-						new Point(105.0, 47.5),
-						new Point(103.72, 54.39),
-						new Point(363.0, 369.5),
-						new Point(617.34, 373.27),
-						new Point(636.0, 367.5),
-						new Point(628.5, 350.91),
-						new Point(291.19, 59.9),
-						new Point(273.0, 48.5),
-					]
-					.reverse()
-					},{
+							new Point(255.33, 44.5),
+							new Point(110.67, 44.5),
+							new Point(105.0, 47.5),
+							new Point(103.72, 54.39),
+							new Point(363.0, 369.5),
+							new Point(617.34, 373.27),
+							new Point(636.0, 367.5),
+							new Point(628.5, 350.91),
+							new Point(291.19, 59.9),
+							new Point(273.0, 48.5),
+						]
+						.reverse()
+				}, {
 					points: [
-						new Point(-130.44, 68.5),
-						new Point(-283.6, 69.29),
-						new Point(-289.13, 70.3),
-						new Point(-291.0, 76.53),
-						new Point(-289.87, 138.7),
-						new Point(-288.01, 144.77),
-						new Point(-283.49, 146.15),
-						new Point(-109.29, 140.61),
-						new Point(-100.0, 135.86),
-						new Point(-100.05, 125.27),
-						new Point(-118.59, 75.99),
-						new Point(-122.09, 69.1),
+							new Point(-130.44, 68.5),
+							new Point(-283.6, 69.29),
+							new Point(-289.13, 70.3),
+							new Point(-291.0, 76.53),
+							new Point(-289.87, 138.7),
+							new Point(-288.01, 144.77),
+							new Point(-283.49, 146.15),
+							new Point(-109.29, 140.61),
+							new Point(-100.0, 135.86),
+							new Point(-100.05, 125.27),
+							new Point(-118.59, 75.99),
+							new Point(-122.09, 69.1),
+						]
+						.reverse()
+				}, {
+					points: [
+						new Point(-20, 64),
+						new Point(20, 64),
+						new Point(20, 164),
+						new Point(-20, 164),
 					]
-					.reverse()
-					}
-					
+				}
+
 			],
 			...options,
 		});
+		this.options = opts;
 		this.turbulenceTarget = 0.3;
-		resources.rain.data.fade(resources.rain.data.volume(),0,1000);
+		resources.rain.data.fade(resources.rain.data.volume(), 0, 1000);
 		this.raining = false;
 
-		setTimeout(()=>{
-			resources.waves.data.fade(resources.waves.data.volume(),.4,1000);
+		setTimeout(() => {
+			resources.waves.data.fade(resources.waves.data.volume(), .4, 1000);
 		});
 
 		this.screenFilter = new CustomFilter(resources.frag.data);
@@ -94,7 +102,7 @@ export default class BoatScene extends BaseScene {
 		if (day) {
 			this.sky = new Graphics();
 			this.sky.beginFill(day ? 0xFFFFFF : 0);
-			this.sky.drawRect(-size.x/2,-size.y/2,size.x*1.5,size.y*1.5);
+			this.sky.drawRect(-size.x / 2, -size.y / 2, size.x * 1.5, size.y * 1.5);
 			this.sky.endFill();
 			this.addChild(this.sky);
 		}
@@ -141,7 +149,7 @@ export default class BoatScene extends BaseScene {
 		this.turbulenceTarget = turbulence;
 	}
 
-	lightningStrike(){
+	lightningStrike() {
 		this.thunderTimer = setTimeout(() => {
 			resources.thunder.data.play();
 		}, Math.random() * 1000);
@@ -159,21 +167,21 @@ export default class BoatScene extends BaseScene {
 							this.screenFilter.uniforms.whiteout = 0.25;
 							setTimeout(() => {
 								this.screenFilter.uniforms.whiteout = 0.0;
-							},60);
-						},60);
-					},60);
-				},60);
-			},60);
-		},60);
+							}, 60);
+						}, 60);
+					}, 60);
+				}, 60);
+			}, 60);
+		}, 60);
 	}
 
-	queueLightning(){
+	queueLightning() {
 		this.lightningTimer = setTimeout(() => {
 			if (this.raining) {
 				this.lightningStrike();
 			}
 			this.queueLightning();
-		}, Math.random()*120000+3000);
+		}, Math.random() * 120000 + 3000);
 	}
 
 	setRaining(raining) {
@@ -181,19 +189,19 @@ export default class BoatScene extends BaseScene {
 			return;
 		}
 		if (raining) {
-			resources.rain.data.fade(0,1,1000);
+			resources.rain.data.fade(0, 1, 1000);
 		} else {
-			resources.rain.data.fade(1,0,1000);
+			resources.rain.data.fade(1, 0, 1000);
 		}
 		this.raining = raining;
 		this.screenFilter.uniforms.raining = raining ? 1 : 0;
 	}
 
-	destroy(){
+	destroy() {
 		super.destroy();
 		clearTimeout(this.lightningTimer);
 		clearTimeout(this.thunderTimer);
-		resources.waves.data.fade(resources.waves.data.volume(),0,1000);
+		resources.waves.data.fade(resources.waves.data.volume(), 0, 1000);
 		resources.thunder.data.stop();
 	}
 }

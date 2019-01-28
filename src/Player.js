@@ -49,13 +49,13 @@ export default class Player extends Character {
 				this.spr.texture = utils.TextureCache[this.name];
 			}
 		}
-		this.freq = (this.running ? 0.5 : 1.0) * 200;
+		this.freq = 1 / ((this.running ? 0.5 : 1.0) * 200);
 		if (this.running) {
 			if (this.running > 5) {
-				this.spr.texture = utils.TextureCache[`${this.name}_run_${(Math.floor(curTime / this.freq) % 2 + 1)}`];
+				this.spr.texture = utils.TextureCache[`${this.name}_run_${(Math.floor(curTime * this.freq) % 2 + 1)}`];
 			}
 			this.flipped = this.v.x < 0;
-			this.spr.anchor.y = 1 + Math.abs(Math.pow(Math.sin(curTime / this.freq), 2)) / 20;
+			this.spr.anchor.y = 1 + Math.abs(Math.pow(Math.sin(curTime * this.freq), 2)) / 20;
 		} else {
 			this.spr.anchor.y = 1;
 		}

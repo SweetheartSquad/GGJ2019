@@ -28,9 +28,9 @@ export class Character extends Container {
 		this.p = { x, y };
 		this.v = { x: 0, y: 0 };
 		this.s = 1.0;
-		this.freq = 200;
+		this.freq = 1/200;
 		this.offset = ++offset;
-		this.talkOffset = 0;
+		this.bounce = 1;
 
 		this.flipped = false;
 
@@ -61,15 +61,19 @@ export class Character extends Container {
 	updateTransform() {
 		super.updateTransform();
 		this.text.text = this.saying;
-		const curTime = game.app.ticker.lastTime;
 		this.x = Math.floor(this.p.x);
 		this.y = Math.floor(this.p.y);
 
+		this.updateScale();
+	}
+
+	updateScale() {
+		const curTime = game.app.ticker.lastTime * this.freq;
 		this.s = lerp(this.s, this.getScale(), .3);
-		this.spr.scale.y = (this.s + (Math.sin(curTime / this.freq + this.offset) / 50 + Math.abs(Math.sin(curTime / this.freq + this.offset) / 30))) * this.rawScale;
+		this.spr.scale.y = (this.s + (Math.sin(curTime + this.offset) / 50 + Math.abs(Math.sin(curTime + this.offset) / 30))) * this.rawScale;
 		this.spr.scale.x = (this.flipped ? -this.s : this.s) * this.rawScale;
 		this.spr.skew.x = -this.v.x / 50;
-		this.shadow.width = this.spr.width - (Math.sin(curTime / this.freq + this.offset) / 30 + Math.abs(Math.sin(curTime / this.freq + this.offset) / 10)) * 64;
+		this.shadow.width = this.spr.width - (Math.sin(curTime + this.offset) / 30 + Math.abs(Math.sin(curTime + this.offset) / 10)) * 64;
 		this.shadow.height = this.spr.height * 0.1;
 	}
 }

@@ -8,7 +8,7 @@ import Player from './Player';
 import TextScene from './TextScene';
 
 let mouse;
-let activeScene;
+export let activeScene;
 export let player;
 
 export function setScene(scene, text, time = 2500) {

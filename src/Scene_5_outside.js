@@ -1,6 +1,6 @@
 import Scene_5_inside from './Scene_5_inside';
 import BoatScene from './BoatScene';
-import { toInterior } from './helpers';
+import { toInterior, toObservation } from './helpers';
 
 
 export default class extends BoatScene {
@@ -16,7 +16,10 @@ export default class extends BoatScene {
           'Would you like another sardine?',
 				],
 			}],
-			interact: [toInterior(Scene_5_inside)],
+			interact: [
+				toInterior(Scene_5_inside),
+				toObservation()
+			],
 		});
 	}
 }

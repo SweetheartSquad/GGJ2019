@@ -15,3 +15,6 @@ export { default as boat } from './boat.png';
 export { default as boatFront } from './boat_front.png';
 export { default as interior } from './interior.png';
 export { default as interiorFront } from './interior_front.png';
+export { default as observation } from './deck.png';
+export { default as observationFront } from './deckFront.png';
+export { default as scope } from './scope.png';

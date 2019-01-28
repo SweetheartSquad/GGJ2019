@@ -1,6 +1,6 @@
 import Scene_4_inside from './Scene_4_inside';
 import BoatScene from './BoatScene';
-import { toInterior } from './helpers';
+import { toInterior, toObservation } from './helpers';
 
 
 export default class extends BoatScene {
@@ -36,7 +36,10 @@ export default class extends BoatScene {
           'The sea is beautiful this time of night.'
 				],
 			}],
-			interact: [toInterior(Scene_4_inside)],
+			interact: [
+				toInterior(Scene_4_inside),
+				toObservation()
+			],
 		});
 	}
 }

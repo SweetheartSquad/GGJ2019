@@ -1,6 +1,6 @@
 import Scene_6_inside from './Scene_6_inside';
 import BoatScene from './BoatScene';
-import { toInterior } from './helpers';
+import { toInterior, toObservation } from './helpers';
 
 
 export default class extends BoatScene {
@@ -26,7 +26,10 @@ export default class extends BoatScene {
                     'The sun can stay up for months!',
 				],
 			}],
-			interact: [toInterior(Scene_6_inside)],
+			interact: [
+				toInterior(Scene_6_inside),
+				toObservation()
+			],
 		});
 		this.setRaining(false);
 	}

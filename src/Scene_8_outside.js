@@ -1,6 +1,6 @@
 import Scene_8_inside from './Scene_8_inside';
 import BoatScene from './BoatScene';
-import { toInterior } from './helpers';
+import { toInterior, toObservation } from './helpers';
 
 
 export default class extends BoatScene {
@@ -15,7 +15,10 @@ export default class extends BoatScene {
           'How many more can we stand?',
 				],
 			}],
-			interact: [toInterior(Scene_8_inside)],
+			interact: [
+				toInterior(Scene_8_inside),
+				toObservation()
+			],
 		});
 		this.setRaining(true);
 		this.setTurbulence(0.6);

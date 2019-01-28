@@ -1,5 +1,6 @@
 import { Point } from "pixi.js/lib/core/math";
-import { player, setScene } from "./main";
+import { player, setScene, activeScene } from "./main";
+import ObservationScene from "./ObservationScene";
 
 export function toInterior(Scene) {
 	return {
@@ -15,6 +16,26 @@ export function toInterior(Scene) {
 				// hallway entrance
 				player.p.x = 424;
 				player.p.y = 235;
+			});
+		},
+	};
+}
+
+export function toObservation() {
+	return {
+		points: [
+			new Point(-60, 50),
+			new Point(60, 50),
+			new Point(60, 80),
+			new Point(-60, 80),
+		],
+		onEnter: () => {
+			const scene = activeScene;
+			setTimeout(() => {
+				setScene(new ObservationScene(activeScene));
+				// stairs
+				player.p.x = 159;
+				player.p.y = 164;
 			});
 		},
 	};

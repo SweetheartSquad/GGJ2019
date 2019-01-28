@@ -1,6 +1,6 @@
 import Scene_9_inside from './Scene_9_inside';
 import BoatScene from './BoatScene';
-import { toInterior } from './helpers';
+import { toInterior, toObservation } from './helpers';
 
 
 export default class extends BoatScene {
@@ -21,7 +21,10 @@ export default class extends BoatScene {
 					'I feel alive out here.',
 				],
 			}],
-			interact: [toInterior(Scene_9_inside)],
+			interact: [
+				toInterior(Scene_9_inside),
+				toObservation()
+			],
 		});
 		this.setRaining(true);
 	}
