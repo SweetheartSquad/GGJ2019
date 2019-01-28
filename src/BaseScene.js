@@ -51,6 +51,9 @@ export default class BaseScene extends Container {
 		floor.addChild(player);
 		this.addChild(floor);
 		this.updateCam();
+		setTimeout(() => {
+			this.floor.sortDirty = true;
+		});
 	}
 
 	update() {
