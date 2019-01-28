@@ -1,18 +1,17 @@
 import game, { resources } from './Game';
 import { lerp } from './utils';
-import { Container, Text, Sprite } from 'pixi.js/lib/core';
+import { Container, Text, Sprite, Point } from 'pixi.js/lib/core';
 
 let offset = 0;
-
 const font = {
 	fontFamily: 'font',
-	fontSize: 36,
+	fontSize: 42,
 	fill: 0x000000,
 	stroke: 0xFFFFFF,
 	strokeThickness: 6,
 	align: 'center',
 	antiAliased: false,
-	lineHeight: 32,
+	lineHeight: 38,
 };
 
 export class Character extends Container {
@@ -28,7 +27,7 @@ export class Character extends Container {
 		this.p = { x, y };
 		this.v = { x: 0, y: 0 };
 		this.s = 1.0;
-		this.freq = 1/200;
+		this.freq = 1 / 200;
 		this.offset = ++offset;
 		this.bounce = 1;
 
@@ -45,13 +44,17 @@ export class Character extends Container {
 		this.zIndex = this.p.y;
 		this.spr.scale.x = this.spr.scale.y = this.getScale() * this.rawScale;
 
-		this.text = new Text("", font);
-		this.text.y = -this.height - 32;
-		this.text.anchor.x = this.text.anchor.y = 0.5;
 		this.x = Math.floor(this.p.x);
 		this.y = Math.floor(this.p.y);
-		this.addChild(this.text);
 		this.saying = '';
+		this.text = new Text(this.saying, font);
+		this.text.anchor.x = this.text.anchor.y = 0.5;
+		game.app.stage.addChild(this.text);
+	}
+
+	destroy(options) {
+		super.destroy(options);
+		this.text.destroy();
 	}
 
 	getScale() {
@@ -61,6 +64,9 @@ export class Character extends Container {
 	updateTransform() {
 		super.updateTransform();
 		this.text.text = this.saying;
+		if (this.saying) {
+			this.text.position = this.toGlobal(new Point(0, -this.spr.height - 20));
+		}
 		this.x = Math.floor(this.p.x);
 		this.y = Math.floor(this.p.y);
 
