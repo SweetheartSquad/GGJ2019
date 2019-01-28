@@ -19,7 +19,9 @@ export default class TextScene extends Container {
 			this.addChild(this.text);
 			this.x = size.x/2;
 			this.y = size.y/2;
-			resources.dramatic.data.play();
+			if(text){
+				resources.dramatic.data.play();
+			}
 		}, 500);
 	}
 
