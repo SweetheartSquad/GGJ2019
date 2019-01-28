@@ -13,7 +13,9 @@ export let player;
 
 export function setScene(scene, text, time = 2500) {
 	if (activeScene) {
-		activeScene.destroy();
+		activeScene.destroy({
+			children: true,
+		});
 	}
 	if (text) {
 		window.scene = activeScene = new TextScene(text);

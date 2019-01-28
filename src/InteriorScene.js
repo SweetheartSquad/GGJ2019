@@ -48,8 +48,8 @@ export default class InteriorScene extends BaseScene {
 		this.floor.x = size.x / 2 + waveX * highSeas;
 	}
 
-	destroy(){
-		super.destroy();
+	destroy(options){
+		super.destroy(options);
 		resources.waves.data.fade(resources.waves.data.volume(),0,1000);
 	}
 }

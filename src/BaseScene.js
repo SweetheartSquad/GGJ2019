@@ -94,8 +94,8 @@ export default class BaseScene extends Container {
 		this.interactiveBounds.debugDraw(debug);
 	}
 
-	destroy() {
-		super.destroy();
+	destroy(options) {
+		super.destroy(options);
 		debug = null;
 	}
 }

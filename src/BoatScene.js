@@ -197,8 +197,8 @@ export default class BoatScene extends BaseScene {
 		this.screenFilter.uniforms.raining = raining ? 1 : 0;
 	}
 
-	destroy() {
-		super.destroy();
+	destroy(options) {
+		super.destroy(options);
 		clearTimeout(this.lightningTimer);
 		clearTimeout(this.thunderTimer);
 		resources.waves.data.fade(resources.waves.data.volume(), 0, 1000);
