@@ -89,15 +89,6 @@ function update() {
 	// update
 	activeScene.update();
 
-	// let g = resources.song1.data.volume() + 0.01;
-	// if (g < 1) {
-	// 	resources.song1.data.volume(Math.min(1, g));
-	// }
-	// g = resources.song2.data.volume() + 0.01;
-	// if (g < 0.25) {
-	// 	resources.song2.data.volume(Math.min(.25, g));
-	// }
-
 	// update input managers
 	gamepads.update();
 	keys.update();
