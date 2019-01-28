@@ -8,7 +8,7 @@ export default class extends BoatScene {
 		super({
 			npcs: [{
 				name: 'scout',
-				x: 0,
+				x: 300,
 				y: 150,
 				lines: [
 					'Do you think it\'s been.. uh...',
@@ -18,8 +18,8 @@ export default class extends BoatScene {
 				],
 			}, {
 				name: 'whizkid',
-				x: -200,
-				y: 150,
+				x: 198,
+				y: 270,
 				lines: [
 					'I think we\'re going North!',
                     'The days can get really long up here.',
