@@ -49,6 +49,7 @@ export class Character extends Container {
 		this.saying = '';
 		this.text = new Text(this.saying, font);
 		this.text.anchor.x = this.text.anchor.y = 0.5;
+		this.text.padding = 32; // required to fix bug where text is cut off at top in some cases
 		game.app.stage.addChild(this.text);
 	}
 
